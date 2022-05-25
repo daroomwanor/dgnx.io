@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Travel by Me</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/623f7f7009.js" crossorigin="anonymous"></script>
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;background: #222;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+
+.td{
+  background-color: #222;
+  color: white;
+  font-style: oblique;
+  font-size: smaller;
+  font-family: -webkit-body;
+  padding-left: 9px;
+  min-width: 540px;
+  border-bottom: "solid 1px #605858";
+
+}
+</style>
+</head>
+<body class="w3-black">
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+  <img src="https://w3schools.com/w3images/avatar_smoke.jpg" style="width:100%">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>Account</p>
+  </a>
+  <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>Trips</p>
+  </a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>Itenery</p>
+  </a>
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">Account</a>
+    <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">Trips</a>
+    <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">Itinerary</a>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="w3-padding-large" id="main">
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    <h1 class="w3-jumbo"><span class="w3-hide-small"></span>Travel by Me</h1>
+    <p>Interactive AI Trip Advisor</p>
+    <select style="width: 200px; text-align: center;" id="directory" class="directory">
+        <option>Select City</option>
+        <option value="Las Vegas">Las Vegas</option>
+        <option value="Boston">Boston</option>
+        <option value="New York United States">New York</option>
+        <option value="Lagos Nigeria">Lagos</option>
+        <option value="cartagena colombia">Cartagena</option>
+    </select>
+    <div class="w3-display-container">
+        <div class="w3-bar w3-row w3-black" style="margin-top: 40px; margin-bottom: 10px;">
+          <div class="w3-bar-item w3-button tab-button foodTableView" onclick="openTab('foodTableView')"><i class='fas fa-pizza-slice' style='font-size:24px'></i> Food</div>
+          <div class="w3-bar-item w3-button tab-button drinksTableView" onclick="openTab('drinksTableView')"><i class='fas fa-glass-cheers' style='font-size:24px'></i> Drinks</div>
+          <div class="w3-bar-item w3-button tab-button nightlifeTableView" onclick="openTab('nightlifeTableView')"> <i class='fas fa-music' style='font-size:24px'></i> Night Life</div>
+          <div class="w3-bar-item w3-button tab-button eventsTableView" onclick="openTab('eventsTableView')"><i class='fas fa-globe-africa' style='font-size:24px'></i> Experience</div>
+          <div class="w3-bar-item w3-button tab-button hotelsTableView" onclick="openTab('hotelsTableView')"><i class='fas fa-bed' style='font-size:24px'></i> Hotels</div>
+        </div>
+    </div>
+    <script>
+        var tView = {
+            "nightclubs":"nightlifeTable",
+            "restaurants":"foodTable",
+            "bars": "drinksTable",
+            "things to do": "eventsTable",
+            "hotels": "hotelsTable"
+        }
+        var loadingView= { 
+            "foodTableView": "restaurants",
+            "drinksTableView": "bars",
+            "nightlifeTableView": "nightclubs",
+            "eventsTableView": "things to do",
+            "hotelsTableView": "hotels"
+          };
+        var directory = document.querySelector('.directory'),
+            websocket = new WebSocket("ws://127.0.0.1:7777/");
+        directory.onchange = function (event) {
+            displayLoading();
+            openTab("foodTableView");
+            websocket.send(JSON.stringify({city: document.getElementById("directory").value}));
+        };
+        websocket.onmessage = function (event) {
+            data = JSON.parse(event.data);
+            disableLoading(data['tableView']);
+            tableView(tView[data['tableView']],data['data']);
+            openTab(tView[data['tableView']]);
+            console.log(data);
+        };
+
+        function tableView(name, data){
+            table = document.getElementById(name);
+            for (var i = 0; i <= data.length; i++) {
+                tr  = table.insertRow(i);
+                td0 =tr.insertCell(0); 
+                td0.innerHTML +='<div style="font-size:large;">'+data[i]['Name']+'</div>';
+                td0.innerHTML +='<div>'+data[i]['Ratings']+'</div>';
+                td0.innerHTML +='<div>'+data[i]['Tag']+'</div>';
+                td0.innerHTML +='<div>'+data[i]['Address']+'</div>';
+                td0.innerHTML +='<div>'+data[i]['Description']+'</div>';
+                td0.classList.add('td');
+            }
+        }
+        function openTab(tableView){
+            tables = document.getElementsByClassName('tableView');
+            tabs = document.getElementsByClassName('tab-button');
+            tab = document.getElementsByClassName(tableView);
+            for (var i = tabs.length - 1; i >= 0; i--) {
+                tabs[i].style.backgroundColor = "Black";
+            }
+            for (var i = tables.length - 1; i >= 0; i--) {
+                tables[i].style.display = "None";
+            }
+            tab[0].style.backgroundColor ="Gray";
+            document.getElementById(tableView).style.display= "Block";
+            if(checkLoading(tableView) == "show"){
+              document.getElementById(loadingView[tableView]).style.display="Block"
+            }
+        }
+        function checkLoading(tableView){
+          var tab = { 
+            "foodTableView": document.getElementById("tab1").value,
+            "drinksTableView": document.getElementById("tab2").value,
+            "nightlifeTableView": document.getElementById("tab3").value,
+            "eventsTableView": document.getElementById("tab4").value,
+            "hotelsTableView": document.getElementById("tab5").value
+          };
+          return tab[tableView];
+        }
+        function displayLoading(){
+          var tab1 = document.getElementById("tab1");
+          var tab2 = document.getElementById("tab2");
+          var tab3 = document.getElementById("tab3");
+          var tab4 = document.getElementById("tab4");
+          var tab5 = document.getElementById("tab5");
+          tab1.value = "show";
+          tab2.value = "show";
+          tab3.value = "show";
+          tab4.value = "show";
+          tab5.value = "show";
+
+        }
+        function disableLoading(id){
+          var tabView = {
+              "nightclubs":"tab3",
+              "restaurants":"tab1",
+              "bars": "tab2",
+              "things to do": "tab4",
+              "hotels": "tab5"
+          }
+          document.getElementById(tabView[id]).value = "hide";
+          document.getElementById(id).style.display = "None";
+        }
+    </script>
+  </header>
+  <div class="w3-container w3-padding-32 w3-center w3-black" style="">
+    <div class="w3-display-container" style="height:100%;margin-left: 40px;">
+      <div class="w3-padding w3-display-middle" style="height:100%;">
+        <div id="nightlifeTableView" class = "tableView">
+          <table id="nightlifeTable" style="color: #90ec06; text-align: left;">
+          </table>
+          <div id="nightclubs" style="display: None;" class="ring"><i class='fas fa-music' style='font-size:24px'></i><span class="span"></span></div>
+        </div>     
+        <div id="foodTableView" class = "tableView">
+          <table id="foodTable"  style="color:#90ec06;text-align: left;">
+          </table>
+          <div id="restaurants" style="display: None;" class="ring"><i class='fas fa-pizza-slice' style='font-size:24px'></i><span class="span"></span></div>
+        </div>
+        <div id="drinksTableView" class = "tableView">
+          <table id="drinksTable" style="color:#90ec06;text-align: left;">
+          </table>
+          <div id="bars" style="display: None;" class="ring"><i class='fas fa-glass-cheers' style='font-size:24px'></i><span class="span"></span></div>
+        </div>
+        <div id="eventsTableView" class = "tableView">
+          <table id="eventsTable" style="color:#90ec06;text-align: left;">
+          </table>
+          <div id="things to do" style="display: None;" class="ring"><i class='fas fa-globe-africa' style='font-size:24px'></i><span class="span"></span></div>
+        </div>
+
+        <div id="hotelsTableView" class = "tableView">
+          <table id="hotelsTable"  style="color:#90ec06;text-align: left;">
+          </table>
+          <div id="hotels" style="display: None;" class="ring"><i class='fas fa-bed' style='font-size:24px'></i><span class="span"></span></div>    
+        </div>    
+      </div>
+    </div>
+    <img src="https://w3schools.com/w3images/man_smoke.jpg" alt="boy" class="w3-image" width="992" height="1108" style="max-width: 25%; float: right;">
+    <input type="hidden" id="tab1" value="hide">
+    <input type="hidden" id="tab2" value="hide">
+    <input type="hidden" id="tab3" value="hide">
+    <input type="hidden" id="tab4" value="hide">
+    <input type="hidden" id="tab5" value="hide">
+  </div>
+  <style type="text/css">
+    body
+      {
+        margin:0;
+        padding:0;
+        background:#262626;
+      }
+      .ring
+      {
+        margin-top: 20px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        width:150px;
+        height:150px;
+        background:transparent;
+        border:3px solid #3c3c3c;
+        border-radius:50%;
+        text-align:center;
+        line-height:150px;
+        font-family:sans-serif;
+        font-size:20px;
+        color:#fff000;
+        letter-spacing:4px;
+        text-transform:uppercase;
+        text-shadow:0 0 10px #fff000;
+        box-shadow:0 0 20px rgba(0,0,0,.5);
+      }
+      .ring:before
+      {
+        content:'';
+        position:absolute;
+        top:-3px;
+        left:-3px;
+        width:100%;
+        height:100%;
+        border:3px solid transparent;
+        border-top:3px solid #fff000;
+        border-right:3px solid #fff000;
+        border-radius:50%;
+        animation:animateC 2s linear infinite;
+      }
+      .span
+      {
+        display:block;
+        position:absolute;
+        top:calc(50% - 2px);
+        left:50%;
+        width:50%;
+        height:4px;
+        background:transparent;
+        transform-origin:left;
+        animation:animate 2s linear infinite;
+      }
+      .span:before
+      {
+        content:'';
+        position:absolute;
+        width:16px;
+        height:16px;
+        border-radius:50%;
+        background:#fff000;
+        top:-6px;
+        right:-8px;
+        box-shadow:0 0 20px #fff000;
+      }
+      @keyframes animateC
+      {
+        0%
+        {
+          transform:rotate(0deg);
+        }
+        100%
+        {
+          transform:rotate(360deg);
+        }
+      }
+      @keyframes animate
+      {
+        0%
+        {
+          transform:rotate(45deg);
+        }
+        100%
+        {
+          transform:rotate(405deg);
+        }
+      }
+  </style>
+
+<!-- END PAGE CONTENT -->
+</div>
+
+</body>
+</html>
