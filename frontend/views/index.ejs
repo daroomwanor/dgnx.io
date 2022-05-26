@@ -102,11 +102,11 @@
             for (var i = 0; i <= data.length; i++) {
                 tr  = table.insertRow(i);
                 td0 =tr.insertCell(0); 
-                td0.innerHTML +='<div style="font-size:large;">'+data[i]['Name']+'</div>';
+                td0.innerHTML +='<a href="https://www.google.com/search?q='+data[i]['Name']+'"><div style="font-size:large;">'+data[i]['Name']+'</div>';
                 td0.innerHTML +='<div>'+data[i]['Ratings']+'</div>';
                 td0.innerHTML +='<div>'+data[i]['Tag']+'</div>';
                 td0.innerHTML +='<div>'+data[i]['Address']+'</div>';
-                td0.innerHTML +='<div>'+data[i]['Description']+'</div>';
+                td0.innerHTML +='<div>'+data[i]['Description']+'</div></a>';
                 td0.classList.add('td');
             }
         }
