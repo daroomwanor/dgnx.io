@@ -8,10 +8,12 @@ var db = new sqlite3.Database('./db/vos.db');
 
 app.get('/', function(req,res){
 	sql = "SELECT * FROM citiesTable";
+	data = []
 	db.get(sql, function(err, row) {
-		console.log(row);
+		data.push({'city':row.cityName, 'country':row.country});
 	});
-	res.render('index', {'data': ""});
+	console.log(data);
+	res.render('index', {'data': data});
 });
 
 app.listen(8080, '0.0.0.0');
