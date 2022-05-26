@@ -16,7 +16,14 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
 #main {margin-left: 120px}
 /* Remove margins from "page content" on small screens */
-@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+@media only screen and (max-width: 300px) {
+  #main {
+    margin-left: 0
+  }
+  td{
+    min-width: 300px;
+  }
+}
 
 .td{
   background-color: #222;
@@ -104,7 +111,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
             "hotelsTableView": "hotels"
           };
         var directory = document.querySelector('.directory'),
-            websocket = new WebSocket("ws://127.0.0.1:7777/");
+            websocket = new WebSocket("ws://54.211.175.110:7771/");
         directory.onchange = function (event) {
             displayLoading();
             openTab("foodTableView");
@@ -184,7 +191,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     </script>
   </header>
   <div class="w3-container w3-padding-32 w3-center w3-black" style="">
-    <div class="w3-display-container" style="height:100%;margin-left: 40px;">
+    <div class="w3-display-container" style="height:100%;margin-left: 0px;">
       <div class="w3-padding w3-display-middle" style="height:100%;">
         <div id="nightlifeTableView" class = "tableView">
           <table id="nightlifeTable" style="color: #90ec06; text-align: left;">

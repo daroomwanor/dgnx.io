@@ -1,9 +1,0 @@
-{
-	"db_host": "a4dbinstance.cd4i1oenty7f.us-east-1.rds.amazonaws.com", 
-	"db_user": "domwanor", 
-	"db_password": "hearby1234", 
-	"db_schema": "master", 
-	"master_url": "localhost", 
-	"master_port":"7777",
-	"crawl_type": "Venue"
-}
