@@ -14,6 +14,7 @@ app.get('/', function(req,res){
 			cities.push(row);
 		});
 	});
+	console.log(cities)
 	res.render('index', {'cities': cities});
 });
 
