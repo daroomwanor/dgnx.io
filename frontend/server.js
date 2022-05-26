@@ -7,9 +7,10 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./db/vos.db');
 
 app.get('/', function(req,res){
-	sql = `SELECT * FROM citiesTable`;
-	var data = db.all(sql);
-	console.log(data)
+	sql = "SELECT * FROM citiesTable";
+	db.get(sql, function(err, row) {
+		console.log(row);
+	});
 	res.render('index', {'data': data});
 });
 
