@@ -14,9 +14,10 @@ app.get('/', function(req,res){
 			console.log(row);
 			cities.push(row);
 		});
+		console.log(cities)
+		res.render('index', {'cities': cities});
 	});
-	console.log(cities)
-	res.render('index', {'cities': cities});
+
 });
 
 app.listen(8080, '0.0.0.0');
