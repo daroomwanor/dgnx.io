@@ -11,6 +11,7 @@ app.get('/', function(req,res){
 	cities = [];
 	db.all(sql, function(err, rows) {
 		rows.forEach(function(row){
+			console.log(row);
 			cities.push(row);
 		});
 	});
