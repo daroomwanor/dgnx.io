@@ -75,9 +75,4 @@ class htmlObject(PageObject):
     div_tag = MultiPageElement(tag_name='div')
     #td_tag = MultiPageElement(tag_name='td')
     #span_tag = MultiPageElement(tag_name='span')
-
-if __name__ == '__main__':
-	pf = placeFinder()
-	for x in ["nightclubs","Bars"]:
-		res = pf.googler("Las Vegas " + x)
-		print(res)
+    

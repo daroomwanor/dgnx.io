@@ -68,7 +68,7 @@ class webSocketIO(object):
 		pass
 
 def Configs():
-	with open("/Users/daroomwanor/zoomClone/dgnx.io/backend/configs.json", "r") as configs:
+	with open("/home/ubuntu/dgnx.io/backend/configs.json", "r") as configs:
 		return configs.read()
 
 def connDB():

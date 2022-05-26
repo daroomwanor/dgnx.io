@@ -16,14 +16,10 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
 #main {margin-left: 120px}
 /* Remove margins from "page content" on small screens */
-@media only screen and (max-width: 300px) {
+
+@media only screen and (max-width: 600px) {
   #main {
     margin-left: 0
-  }
-  td{
-    min-width: 300px;
-  }
-}
 
 .td{
   background-color: #222;
@@ -32,7 +28,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   font-size: smaller;
   font-family: -webkit-body;
   padding-left: 9px;
-  min-width: 540px;
+  min-width: 300px;
   border-bottom: "solid 1px #605858";
 
 }
@@ -76,7 +72,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <div class="w3-padding-large" id="main">
   <!-- Header/Home -->
   <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-    <h1 class="w3-jumbo"><span class="w3-hide-small"></span>Travel by Me</h1>
+    <h3 style="font-size: 36px!important;" class="w3-jumbo"><span class="w3-hide-small"></span>Travel by </br> Me</h3>
     <p>Interactive AI Trip Advisor</p>
     <select style="width: 200px; text-align: center;" id="directory" class="directory">
         <option>Select City</option>
