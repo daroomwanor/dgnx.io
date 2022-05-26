@@ -10,9 +10,9 @@ app.get('/', function(req,res){
 	sql = "SELECT * FROM citiesTable";
 	data = []
 	db.get(sql, function(err, row) {
+		console.log({'city':row.cityName, 'country':row.country});
 		data.push({'city':row.cityName, 'country':row.country});
 	});
-	console.log(data);
 	res.render('index', {'data': data});
 });
 
