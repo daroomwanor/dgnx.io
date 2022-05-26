@@ -10,9 +10,9 @@ app.get('/', function(req,res){
 	sql = "SELECT * FROM citiesTable";
 	data = []
 	db.get(sql, function(err, rows) {
-		rows.forEach(row){
+		rows.forEach(function(row){
 			console.log(row);
-		}
+		});
 	});
 	res.render('index', {'data': data});
 });
