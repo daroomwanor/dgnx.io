@@ -5,7 +5,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('/home/ubuntu/dgnx.io/frontend/db/vos.db');
-
+console.log(db)
 app.get('/', function(req,res){
 	sql = `SELECT * FROM citiesTable`;
 	var data = db.all(sql);
