@@ -13,7 +13,6 @@ app.get('/', function(req,res){
 			console.log(row);
 		})
 	});
-	console.log(data)
 	res.render('index', {'data': data});
 });
 
