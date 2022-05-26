@@ -53,11 +53,9 @@
     <p>Interactive AI Trip Advisor</p>
     <select style="width: 200px; text-align: center;" id="directory" class="directory">
         <option>Select City</option>
-        <option value="Las Vegas">Las Vegas</option>
-        <option value="Boston">Boston</option>
-        <option value="New York United States">New York</option>
-        <option value="Lagos Nigeria">Lagos</option>
-        <option value="cartagena colombia">Cartagena</option>
+        <% cities.forEach(function(city){%>
+          <option value="<%= city.cityName %>"> <%= city.cityName %></option>
+        <% }); %>
     </select>
     <div class="w3-display-container">
         <div class="w3-bar w3-row w3-black" style="margin-top: 40px; margin-bottom: 10px;">
