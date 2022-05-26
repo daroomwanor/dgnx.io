@@ -11,7 +11,7 @@ app.get('/', function(req,res){
 	db.get(sql, function(err, row) {
 		console.log(row);
 	});
-	res.render('index', {'data': data});
+	res.render('index', {'data': ""});
 });
 
 app.listen(8080, '0.0.0.0');
