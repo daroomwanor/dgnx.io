@@ -8,7 +8,7 @@ var db = new sqlite3.Database('./db/vos.db');
 
 app.get('/', function(req,res){
 	sql = "SELECT * FROM citiesTable";
-	cities = []
+	cities = [];
 	db.all(sql, function(err, rows) {
 		rows.forEach(function(row){
 			cities.push(row);
