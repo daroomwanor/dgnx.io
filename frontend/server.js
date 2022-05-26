@@ -7,8 +7,8 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('/home/ubuntu/dgnx.io/frontend/db/vos.db');
 
 app.get('/', function(req,res){
-	sql = 'SELECT * FROM citiesTable';
-	var data = db.run(sql);
+	sql = `SELECT * FROM citiesTable`;
+	var data = db.all(sql);
 	console.log(data)
 	res.render('index', {'data': data});
 });
