@@ -7,7 +7,7 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./db/vos.db');
 
 app.get('/', function(req,res){
-	sql = "SELECT * FROM citiesTable";
+	sql = "SELECT * FROM citiesTable ORDER BY cityName DESC";
 	cities = [];
 	db.all(sql, function(err, rows) {
 		rows.forEach(function(row){
