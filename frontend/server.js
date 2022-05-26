@@ -9,7 +9,7 @@ var db = new sqlite3.Database('./db/vos.db');
 app.get('/', function(req,res){
 	sql = "SELECT * FROM citiesTable";
 	data = []
-	db.get(sql, function(err, rows) {
+	db.all(sql, function(err, rows) {
 		console.log(rows);
 	});
 	res.render('index', {'data': data});
