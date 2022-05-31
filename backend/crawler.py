@@ -47,6 +47,7 @@ class placeFinder(object):
 				print(imgs[k].get_attribute('src'))
 				txt = self.dictListData(ele[k].text)
 				#self.uploadToDB(placeType,city,txt)
+				print(txt)
 				places.append(txt)
 			return places
 		finally:
