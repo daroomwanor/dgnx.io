@@ -27,13 +27,12 @@ app.get('/findPlaces', function(request,response){
 	db.all(sql, function(error, rows){
 		rows.forEach(function(row){
 			respData.push(row);
+			response.json(respData);
 		});
 		if(error){
 			console.log(error);
 		}
-		console.log(respData);
 	});
-	response.json(respData);
 });
 
 app.listen(8080, '0.0.0.0');
