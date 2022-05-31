@@ -20,7 +20,7 @@ app.get('/', function(req,res){
 });
 
 app.get('/findPlaces', function(request,response){
-	sql = "SELECT * FROM placesTable";
+	sql = 'SELECT * FROM placesTable WHERE city = "Las Vegas"';
 	resp= []
 	db.all(sql, function(error, rows){
 		rows.forEach(function(row){
@@ -29,8 +29,9 @@ app.get('/findPlaces', function(request,response){
 		if(error){
 			console.log(error);
 		}
-		console.log(resp)
+		console.log(respData)
 	});
+	return respData
 });
 
 app.listen(8080, '0.0.0.0');
