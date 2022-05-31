@@ -33,7 +33,7 @@ app.get('/findPlaces', function(request,response){
 		}
 		console.log(respData);
 	});
-	response.render(respData);
+	response.render(JSON.stringify(respData));
 });
 
 app.listen(8080, '0.0.0.0');
