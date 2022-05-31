@@ -40,14 +40,15 @@ class placeFinder(object):
 			q = urllib.parse.quote_plus(placeType+" "+city)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
 			browser.get(search)
-			ele = browser.find_elements_by_class_name("b9tNq")
+			ele = browser.find_elements_by_class_name("rllt__details")
 			places = []
+			img = []
+			for img in find_elements_by_class_name('tLipRb'):
+				print(img.get_attribute('src'))
 			for k in ele:
-				img = k.find_elements_by_class_name("tLipRb")
-				print(img)
 				txt = self.dictListData(k.text)
-				#self.uploadToDB(placeType,city,txt)
-				print(places.append(txt))
+				self.uploadToDB(placeType,city,txt)
+				places.append(txt)
 			return places
 		finally:
 			display.stop()
