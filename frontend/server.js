@@ -20,9 +20,9 @@ app.get('/', function(req,res){
 });
 
 app.get('/findPlaces', function(request,response){
-	sql = "SELECT * FROM placesTable WHERE city =Las Vegas";
+	sql = "SELECT * FROM placesTable WHERE city = ? ";
 	resp= []
-	db.all(sql, function(error, rows){
+	db.run((sql, "Las Vegas"), function(error, rows){
 		rows.forEach(function(row){
 			resp.push(row);
 		});
