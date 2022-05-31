@@ -42,12 +42,11 @@ class placeFinder(object):
 			browser.get(search)
 			ele = browser.find_elements_by_class_name("rllt__details")
 			places = []
-			img = []
-			for img in browser.find_elements_by_class_name('tLipRb'):
-				print(img.get_attribute('src'))
-			for k in ele:
-				txt = self.dictListData(k.text)
-				self.uploadToDB(placeType,city,txt)
+			imgs = browser.find_elements_by_class_name('tLipRb')
+			for k in range(len(ele)):
+				print(imgs[k].get_attribute('src'))
+				txt = self.dictListData(ele[k].text)
+				#self.uploadToDB(placeType,city,txt)
 				places.append(txt)
 			return places
 		finally:
