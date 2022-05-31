@@ -2,7 +2,11 @@
 <table>
 	<% places.forEach(function(place){%>
 		<tr>
-			<td><%=place.placeName%></td>
+			<td>
+				<div><%=place.placeName%><div>
+				<div><%=place.ratings%><div>
+				<div><%=place.reviews%><div>
+			</td>
 			<td><img class="tLipRb" style="border:0;left:0px;position:relative;top:0px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90"></td>
 		</tr>
 	<%});%>
