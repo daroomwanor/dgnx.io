@@ -21,7 +21,7 @@ app.get('/', function(req,res){
 
 app.get('/findPlaces', function(request,response){
 	sql = 'SELECT * FROM placesTable WHERE city = "Las Vegas"';
-	resp= []
+	respData= []
 	db.all(sql, function(error, rows){
 		rows.forEach(function(row){
 			resp.push(row);
