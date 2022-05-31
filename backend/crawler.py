@@ -44,16 +44,15 @@ class placeFinder(object):
 			places = []
 			imgs = browser.find_elements_by_class_name('tLipRb')
 			for k in range(len(ele)):
-				print(imgs[k].get_attribute('src'))
-				txt = self.dictListData(ele[k].text)
-				#self.uploadToDB(placeType,city,txt)
-				print(txt)
-				places.append(txt)
+				thumbnails = imgs[k].get_attribute('src')
+				place = self.dictListData(ele[k].text)
+				self.uploadToDB(placeType,city,places,thumbnails)
+				places.append(place)
 			return places
 		finally:
 			display.stop()
 			os.popen("pkill Chrome")
-	
+
 	def isPlaceFound(self, placeName, city):
 		try:
 			query = "SELECT Id FROM placesTable WHERE placeName = ? AND city = ?"
@@ -63,15 +62,18 @@ class placeFinder(object):
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
 
-	def uploadToDB(self,placeType,city,place):
+	def uploadToDB(self,placeType,city,place,thumbnails):
 		try:
-			guid = str(uuid.uuid4())
-			query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews) VALUES(?,?,?,?,?,?)"
-			cur = conn.cursor()
-			cur.execute(query, (guid, city, placeType, place['Name'], place['Ratings'], place['Tag']))
-			conn.commit()
-			print(cur.lastrowid)
-			return cur.lastrowid
+			if len(self.isPlaceFound(placeName,city)) == 0:
+				guid = str(uuid.uuid4())
+				query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews,thumbnails) VALUES(?,?,?,?,?,?,?)"
+				cur = conn.cursor()
+				cur.execute(query, (guid, city, placeType, place['Name'], place['Ratings'], place['Tag'], thumbnails))
+				conn.commit()
+				print(cur.lastrowid)
+				return cur.lastrowid
+			else:
+				print("Logged")
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
 
