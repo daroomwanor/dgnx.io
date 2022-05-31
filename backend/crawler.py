@@ -40,17 +40,28 @@ class placeFinder(object):
 			q = urllib.parse.quote_plus(placeType+" "+city)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
 			browser.get(search)
-			ele = browser.find_elements_by_class_name("rllt__details")
+			ele = browser.find_elements_by_class_name("b9tNq")
 			places = []
 			for k in ele:
+				img = k.find_elements_by_class_name("tLipRb")
+				print(img)
 				txt = self.dictListData(k.text)
-				self.uploadToDB(placeType,city,txt)
+				#self.uploadToDB(placeType,city,txt)
 				places.append(txt)
 			return places
 		finally:
 			display.stop()
 			os.popen("pkill Chrome")
 	
+	def isPlaceFound(self, placeName, city):
+		try:
+			query = "SELECT Id FROM placesTable WHERE placeName = ? AND city = ?"
+			cur = conn.cursor()
+			cur.execute(query,(placeName,city))
+			return cur.fetchall()
+		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
+			print(e)
+
 	def uploadToDB(self,placeType,city,place):
 		try:
 			guid = str(uuid.uuid4())
