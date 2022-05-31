@@ -30,7 +30,6 @@ app.get('/findPlaces', function(request,response){
 			console.log(error);
 		}
 		console.log(resp)
-		render('home', {'places': resp})
 	});
 });
 
