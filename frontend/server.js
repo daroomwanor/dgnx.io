@@ -22,7 +22,7 @@ app.get('/', function(req,res){
 app.get('/findPlaces', function(request,response){
 	sql = "SELECT * FROM citiesTable ORDER BY cityName ASC";
 	resp= []
-	db.run(sql, function(error, rows){
+	db.all(sql, function(error, rows){
 		rows.forEach(function(row){
 			resp.push(row);
 		});
