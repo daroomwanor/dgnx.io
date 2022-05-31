@@ -28,7 +28,7 @@ app.get('/findPlaces', function(request,response){
 		rows.forEach(function(row){
 			respData.push(row);
 		});
-		response.json(respData);
+		response.render('places', {'places':respData});
 	});
 });
 
