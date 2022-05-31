@@ -47,7 +47,7 @@ class placeFinder(object):
 				print(img)
 				txt = self.dictListData(k.text)
 				#self.uploadToDB(placeType,city,txt)
-				places.append(txt)
+				print(places.append(txt))
 			return places
 		finally:
 			display.stop()
