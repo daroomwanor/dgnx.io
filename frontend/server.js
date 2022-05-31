@@ -19,7 +19,7 @@ app.get('/', function(req,res){
 
 });
 
-app.get('/findPlaces' function(request,response){
+app.get('/findPlaces', function(request,response){
 	sql = "SELECT * FROM placesTable WHERE cityName =Las Vegas";
 	resp= []
 	db.all(sql, function(error, rows){
