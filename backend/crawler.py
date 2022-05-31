@@ -64,7 +64,7 @@ class placeFinder(object):
 
 	def uploadToDB(self,placeType,city,place,thumbnails):
 		try:
-			if len(self.isPlaceFound(placeName,city)) == 0:
+			if len(self.isPlaceFound(place['Name'],city)) == 0:
 				guid = str(uuid.uuid4())
 				query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews,thumbnails) VALUES(?,?,?,?,?,?,?)"
 				cur = conn.cursor()
