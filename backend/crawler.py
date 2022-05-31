@@ -24,7 +24,7 @@ from page_objects import PageObject, MultiPageElement, PageElement
 import pysqlite3
 
 
-conn = sqlite3.connect("/home/ubuntu/dgnx.io/frontend/db/vos.db")
+conn = pysqlite3.connect("/home/ubuntu/dgnx.io/frontend/db/vos.db")
 
 logging.basicConfig(level=logging.INFO)
 
