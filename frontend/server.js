@@ -20,9 +20,9 @@ app.get('/', function(req,res){
 });
 
 app.get('/findPlaces', function(request,response){
-	sql = "SELECT * FROM placesTable";
+	sql = "SELECT * FROM citiesTable ORDER BY cityName ASC";
 	resp= []
-	db.run((sql, "Las Vegas"), function(error, rows){
+	db.run(sql, function(error, rows){
 		rows.forEach(function(row){
 			resp.push(row);
 		});
