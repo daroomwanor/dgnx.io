@@ -53,11 +53,11 @@ class placeFinder(object):
 	
 	def uploadToDB(self,placeType,city,place):
 		try:
-			print(place)
 			guid = str(uuid.uuid4())
-			query = "INSERT INTO placesTable(guid, city, placeType, placeName) VALUES(?,?,?)"
+			query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews) VALUES(?,?,?,?,?,?)"
 			cur = conn.cursor()
-			cur.execute(query, (guid, city, placeType))
+			print(query)
+			cur.execute(query, (guid, city, placeType, place['Name'], place['ratings'], place['reviews']))
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
 
