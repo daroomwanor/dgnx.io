@@ -43,7 +43,7 @@ class placeFinder(object):
 			ele = browser.find_elements_by_class_name("rllt__details")
 			places = []
 			img = []
-			for img in find_elements_by_class_name('tLipRb'):
+			for img in browser.find_elements_by_class_name('tLipRb'):
 				print(img.get_attribute('src'))
 			for k in ele:
 				txt = self.dictListData(k.text)
