@@ -30,14 +30,14 @@ logging.basicConfig(level=logging.INFO)
 
 class placeFinder(object):
 
-	def googler(self, query, city, placeType):
+	def googler(self,city, placeType):
 		display = Display(visible=0, size=(1200, 1200))
 		display.start()
 		try:
 			chrome_options = webdriver.ChromeOptions()
 			chrome_options.add_argument('--no-sandbox')
 			browser = webdriver.Chrome('/usr/bin/chromedriver', options=chrome_options)
-			q = urllib.parse.quote_plus(query)
+			q = urllib.parse.quote_plus(placeType+" "+city)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
 			browser.get(search)
 			ele = browser.find_elements_by_class_name("rllt__details")
@@ -52,11 +52,15 @@ class placeFinder(object):
 			display.stop()
 			os.popen("pkill Chrome")
 			logging.info('Scraped For '+f'{query}')
+	
 	def uploadToDB(self,place,city, placeType):
-		guid = str(uuid.uuid4())
-		query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews) VALUES({0},{1},{2},{3},{4})".format(guid, city, placeType, place['Name'], place['Ratings'], place['Tag'])
-		cur = conn.cursor()
-		cur.execute()
+		try:
+			guid = str(uuid.uuid4())
+			query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews) VALUES({0},{1},{2},{3},{4})".format(guid, city, placeType, place['Name'], place['Ratings'], place['Tag'])
+			cur = conn.cursor()
+			cur.execute()
+		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
+			print(e)
 
 	def dictListData(self, str_input):
 		res = {}
@@ -76,3 +80,7 @@ class placeFinder(object):
 						'Description': "None",}
 		finally:
 			return res
+
+if __name__ == '__main__':
+	pf = placeFinder()
+	pf.googler("Las Vegas", "restaurants")
