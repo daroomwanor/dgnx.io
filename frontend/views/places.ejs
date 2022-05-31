@@ -32,4 +32,52 @@
 			<%});%>
 		</table>
 	</div>
+	<div>
+		<h3>Night Life</h3>
+		<table>
+			<% places.forEach(function(place){%>
+				<% if(place.placeType == "nightclub"){%>
+					<tr>
+						<td>
+							<div><%=place.placeName%><div>
+							<div><%=place.ratings%><div>
+						</td>
+						<td><img class="tLipRb" style="border:0;left:0px;position:relative;top:0px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90"></td>
+					</tr>
+				<%};%>
+			<%});%>
+		</table>
+	</div>
+	<div>
+		<h3>Experience</h3>
+		<table>
+			<% places.forEach(function(place){%>
+				<% if(place.placeType == "attraction"){%>
+					<tr>
+						<td>
+							<div><%=place.placeName%><div>
+							<div><%=place.ratings%><div>
+						</td>
+						<td><img class="tLipRb" style="border:0;left:0px;position:relative;top:0px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90"></td>
+					</tr>
+				<%};%>
+			<%});%>
+		</table>
+	</div>
+	<div>
+		<h3>Accomodation</h3>
+		<table>
+			<% places.forEach(function(place){%>
+				<% if(place.placeType == "hotels"){%>
+					<tr>
+						<td>
+							<div><%=place.placeName%><div>
+							<div><%=place.ratings%><div>
+						</td>
+						<td><img class="tLipRb" style="border:0;left:0px;position:relative;top:0px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90"></td>
+					</tr>
+				<%};%>
+			<%});%>
+		</table>
+	</div>
 </div>
