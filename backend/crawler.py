@@ -46,7 +46,7 @@ class placeFinder(object):
 			for k in range(len(ele)):
 				thumbnails = imgs[k].get_attribute('src')
 				place = self.dictListData(ele[k].text)
-				self.uploadToDB(placeType,city,places,thumbnails)
+				self.uploadToDB(placeType,city,place,thumbnails)
 				places.append(place)
 			return places
 		finally:
