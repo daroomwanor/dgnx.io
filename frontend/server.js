@@ -19,6 +19,18 @@ app.get('/', function(req,res){
 
 });
 
+app.get('/findPlaces' function(request,response){
+	sql = "SELECT * FROM placesTable WHERE cityName =Las Vegas";
+	resp= []
+	db.all(sql, function(error, rows){
+		rows.forEach(function(row){
+			resp.push(row);
+		});
+		console.log(resp)
+		render('home', {'places': resp})
+	});
+});
+
 app.listen(8080, '0.0.0.0');
 console.log("Server is running on port 8080");
 
