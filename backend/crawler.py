@@ -40,9 +40,9 @@ class placeFinder(object):
 			q = urllib.parse.quote_plus(placeType+" "+city)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
 			browser.get(search)
-			ele = browser.find_elements_by_class_name("rllt__details")
+			ele = browser.find_elements(by=By.CLASS_NAME, value="rllt__details")
 			places = []
-			imgs = browser.find_elements_by_class_name('tLipRb')
+			imgs = browser.find_elements(by=By.CLASS_NAME, value="tLipRb")
 			for k in range(len(ele)):
 				thumbnails = imgs[k].get_attribute('src')
 				place = self.dictListData(ele[k].text)
