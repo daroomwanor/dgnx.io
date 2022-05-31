@@ -27,11 +27,8 @@ app.get('/findPlaces', function(request,response){
 	db.all(sql, function(error, rows){
 		rows.forEach(function(row){
 			respData.push(row);
-			response.json(respData);
 		});
-		if(error){
-			console.log(error);
-		}
+		response.json(respData);
 	});
 });
 
