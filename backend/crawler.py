@@ -43,10 +43,10 @@ class placeFinder(object):
 			ele = browser.find_elements_by_class_name("rllt__details")
 			places = []
 			for k in ele:
-				txt = k.text
-				self.uploadToDB(city, placeType, self.dictListData(txt))
-				places.append(self.dictListData(txt))
-			print(places)
+				txt = self.dictListData(k.text)
+				print(txt)
+				self.uploadToDB(placeType,city,txt)
+				places.append(txt)
 			return places
 		finally:
 			display.stop()
