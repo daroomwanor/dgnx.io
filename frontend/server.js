@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 
+const http = require('http');
+const url = require('url');
+
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 var sqlite3 = require('sqlite3').verbose();
@@ -18,13 +21,13 @@ app.get('/', function(req,res){
 	});
 
 });
-function getPlaces(city){
 
-}
 app.get('/findPlaces', function(request,response){
+	const queryObject = url.parse(request.url, true).query;
+	city = queryObject.city;
 	sql = 'SELECT * FROM placesTable WHERE city = ?';
 	respData= []
-	db.all(sql,"Las Vegas", function(error, rows){
+	db.all(sql,city, function(error, rows){
 		rows.forEach(function(row){
 			respData.push(row);
 		});
