@@ -22,9 +22,9 @@ function getPlaces(city){
 
 }
 app.get('/findPlaces', function(request,response){
-	sql = 'SELECT * FROM placesTable WHERE city = "Las Vegas"';
+	sql = 'SELECT * FROM placesTable WHERE city = ?';
 	respData= []
-	db.all(sql, function(error, rows){
+	db.all(sql,"Las Vegas", function(error, rows){
 		rows.forEach(function(row){
 			respData.push(row);
 		});
