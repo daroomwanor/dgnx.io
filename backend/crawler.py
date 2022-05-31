@@ -44,7 +44,6 @@ class placeFinder(object):
 			places = []
 			for k in ele:
 				txt = self.dictListData(k.text)
-				print(txt)
 				self.uploadToDB(placeType,city,txt)
 				places.append(txt)
 			return places
@@ -54,8 +53,9 @@ class placeFinder(object):
 	
 	def uploadToDB(self,place,city, placeType):
 		try:
+			print(place)
 			guid = str(uuid.uuid4())
-			query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews) VALUES({0},{1},{2},{3},{4})".format(guid, city, placeType, place['Name'], place['Ratings'], place['Tag'])
+			query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews) VALUES({0},{1},{2},{3},{4})".format(guid, city, placeType)
 			cur = conn.cursor()
 			cur.execute(query)
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
