@@ -18,7 +18,9 @@ app.get('/', function(req,res){
 	});
 
 });
+function getPlaces(city){
 
+}
 app.get('/findPlaces', function(request,response){
 	sql = 'SELECT * FROM placesTable WHERE city = "Las Vegas"';
 	respData= []
@@ -29,9 +31,9 @@ app.get('/findPlaces', function(request,response){
 		if(error){
 			console.log(error);
 		}
-		console.log(respData)
+		console.log(respData);
 	});
-	return respData
+	response.render(respData);
 });
 
 app.listen(8080, '0.0.0.0');
