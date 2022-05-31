@@ -98,4 +98,8 @@ class placeFinder(object):
 
 if __name__ == '__main__':
 	pf = placeFinder()
-	pf.googler("Las Vegas", "hotels")
+	cities = ['Las Vegas']
+	placeType = ['restaurants', 'bars', 'nightclub', 'attractions', 'hotels']
+	for city in cities:
+		for placeType in placeTypes:
+			pf.googler(city, placeType)
