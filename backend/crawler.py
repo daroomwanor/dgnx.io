@@ -98,4 +98,4 @@ class placeFinder(object):
 
 if __name__ == '__main__':
 	pf = placeFinder()
-	pf.googler("Las Vegas", "restaurants")
+	pf.googler("Las Vegas", "Bars")
