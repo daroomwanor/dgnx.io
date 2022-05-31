@@ -57,7 +57,7 @@ class placeFinder(object):
 			query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews) VALUES(?,?,?,?,?,?)"
 			cur = conn.cursor()
 			print(query)
-			cur.execute(query, (guid, city, placeType, place['Name'], place['ratings'], place['reviews']))
+			cur.execute(query, (guid, city, placeType, place['Name'], place['Ratings'], place['Reviews']))
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
 
