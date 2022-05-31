@@ -58,6 +58,8 @@ class placeFinder(object):
 			cur = conn.cursor()
 			print(query)
 			cur.execute(query, (guid, city, placeType, place['Name'], place['Ratings'], place['Tag']))
+			cur.commit()
+			return cur.lastrowid
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
 
