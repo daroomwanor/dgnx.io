@@ -20,7 +20,7 @@ app.get('/', function(req,res){
 });
 
 app.get('/findPlaces', function(request,response){
-	sql = "SELECT * FROM citiesTable ORDER BY cityName ASC";
+	sql = "SELECT * FROM placesTable";
 	resp= []
 	db.all(sql, function(error, rows){
 		rows.forEach(function(row){
