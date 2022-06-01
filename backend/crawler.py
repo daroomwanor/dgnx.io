@@ -44,11 +44,13 @@ class placeFinder(object):
 			places = []
 			imgs = browser.find_elements(by=By.CLASS_NAME, value="tLipRb")
 			for k in range(len(ele)):
-				thumbnails = imgs[k].get_attribute('src')
-				place = self.dictListData(ele[k].text)
-				self.uploadToDB(placeType,city,place,thumbnails)
-				places.append(place)
-			return places
+				try:
+					thumbnails = imgs[k].get_attribute('src')
+					place = self.dictListData(ele[k].text)
+					self.uploadToDB(placeType,city,place,thumbnails)
+					places.append(place)
+				finally:
+					return places
 		finally:
 			display.stop()
 			os.popen("pkill Chrome")
@@ -68,9 +70,9 @@ class placeFinder(object):
 		try:
 			if len(self.isPlaceFound(place['Name'],city)) == 0:
 				guid = str(uuid.uuid4())
-				query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews,thumbnails) VALUES(?,?,?,?,?,?,?)"
+				query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews,thumbnails,address) VALUES(?,?,?,?,?,?,?,?)"
 				cur = conn.cursor()
-				cur.execute(query, (guid, city, placeType, place['Name'], place['Ratings'], place['Tag'], thumbnails))
+				cur.execute(query, (guid, city, placeType, place['Name'], place['Ratings'], place['Tag'], thumbnails, place['Address']))
 				conn.commit()
 				print(cur.lastrowid)
 				return cur.lastrowid
