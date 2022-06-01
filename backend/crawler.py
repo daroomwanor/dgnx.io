@@ -24,37 +24,34 @@ from page_objects import PageObject, MultiPageElement, PageElement
 import pysqlite3
 
 
-conn = pysqlite3.connect("/home/ubuntu/dgnx.io/vos.db")
+conn = pysqlite3.connect("/home/ubuntu/dgnx.io/frontend/db/vos.db")
 
 logging.basicConfig(level=logging.INFO)
 
 class placeFinder(object):
 
 	def googler(self,city, placeType):
+		display = Display(visible=0, size=(1200, 1200))
+		display.start()
 		try:
-			display = Display(visible=0, size=(1200, 1200))
-			display.start()
 			chrome_options = webdriver.ChromeOptions()
 			chrome_options.add_argument('--no-sandbox')
 			browser = webdriver.Chrome('/usr/bin/chromedriver', options=chrome_options)
-			q = urllib.parse.quote_plus(city+" "+placeType)
+			q = urllib.parse.quote_plus(placeType+" "+city)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
 			browser.get(search)
 			ele = browser.find_elements(by=By.CLASS_NAME, value="rllt__details")
 			places = []
 			imgs = browser.find_elements(by=By.CLASS_NAME, value="tLipRb")
 			for k in range(len(ele)):
-				try:
-					thumbnails = imgs[k].get_attribute('src')
-					place = self.dictListData(ele[k].text)
-					self.uploadToDB(placeType,city,place,thumbnails)
-					places.append(place)
-					display.stop()
-					os.popen("pkill Chrome")
-				finally:
-					return places
+				thumbnails = imgs[k].get_attribute('src')
+				place = self.dictListData(ele[k].text)
+				self.uploadToDB(placeType,city,place,thumbnails)
+				places.append(place)
+			return places
 		finally:
-			pass
+			display.stop()
+			os.popen("pkill Chrome")
 
 	def isPlaceFound(self, placeName, city):
 		try:
@@ -62,27 +59,23 @@ class placeFinder(object):
 			cur = conn.cursor()
 			cur.execute(query,(placeName,city))
 			return cur.fetchall()
-		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
+		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
-		finally:
-			pass
 
 	def uploadToDB(self,placeType,city,place,thumbnails):
 		try:
-			print(place)
 			if len(self.isPlaceFound(place['Name'],city)) == 0:
 				guid = str(uuid.uuid4())
-				query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews,thumbnails,address) VALUES(?,?,?,?,?,?,?,?)"
+				query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews,thumbnails) VALUES(?,?,?,?,?,?,?)"
 				cur = conn.cursor()
-				cur.execute(query, (guid, city, placeType, place['Name'], place['Ratings'], place['Tag'], thumbnails, place['Address']))
+				cur.execute(query, (guid, city, placeType, place['Name'], place['Ratings'], place['Tag'], thumbnails))
 				conn.commit()
+				print(cur.lastrowid)
 				return cur.lastrowid
 			else:
 				print("Logged")
-		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
+		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
-		finally:
-			print(city)
 
 	def dictListData(self, str_input):
 		res = {}
@@ -109,8 +102,4 @@ if __name__ == '__main__':
 	placeTypes = ['restaurants', 'bars', 'nightclub', 'attractions', 'hotels']
 	for city in cities:
 		for placeType in placeTypes:
-			try:
-				pf.googler(city, placeType)
-				time.sleep(10.0)
-			finally:
-				pass
+			pf.googler(city, placeType)
