@@ -46,7 +46,7 @@ class placeFinder(object):
 			ele = browser.find_elements(by=By.CLASS_NAME, value="sATSHe")
 			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
 			print(ele)
-			print(website.get_attribute('href'))
+			print(website)
 
 		finally:
 			display.stop()
