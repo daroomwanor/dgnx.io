@@ -103,3 +103,4 @@ if __name__ == '__main__':
 	for city in cities:
 		for placeType in placeTypes:
 			pf.googler(city, placeType)
+			time.sleep(10.0)
