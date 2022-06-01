@@ -47,6 +47,7 @@ class placeFinder(object):
 			ele = browser.find_elements(by=By.CLASS_NAME, value="UDZeY")
 			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
 			print(ele[0].text)
+			print(website[0].get_attribute('href'))
 		finally:
 			display.stop()
 			os.popen("pkill Chrome")
