@@ -1,12 +1,14 @@
 <body>
 	<div>
 		<link href="/css/style.css" rel="stylesheet" type="text/css">
-		<script src="js/index.js" type="text/javascript"></script>
-		<select>
+		<script src="js/home.js" type="text/javascript"></script>
+		<select id="cities" onchange="getPlaces()">
 			<% cities.forEach(function(city){%>
 				<option><%=city.city%></option>
 			<%});%>
 			
 		</select>
+	</div>
+	<div id="main">
 	</div>
 <body>

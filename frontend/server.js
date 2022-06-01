@@ -42,7 +42,6 @@ app.get('/backpage', function(request, response){
 		rows.forEach(function(row){
 			cities.push(row);
 		});
-		console.log(cities);
 		response.render('home', {'cities':cities});
 	});
 });
