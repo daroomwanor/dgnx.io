@@ -36,7 +36,7 @@ app.get('/findPlaces', function(request,response){
 });
 
 app.get('/backpage', function(request, response){
-	sql = 'select distinct(city) from placesTable';
+	sql = 'select distinct(city) from placesTable order by city ASC';
 	cities= []
 	db.all(sql, function(error, rows){
 		rows.forEach(function(row){
