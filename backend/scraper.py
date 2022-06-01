@@ -109,8 +109,8 @@ if __name__ == '__main__':
 	'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
 
 	for city in us_cities:
-		print(city)
-		for place in getPlaces(city):
+		places = getPlaces(city)
+		for place in places:
 			try:
 				print(place)
 			finally:
