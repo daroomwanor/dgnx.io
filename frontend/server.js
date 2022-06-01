@@ -35,6 +35,17 @@ app.get('/findPlaces', function(request,response){
 	});
 });
 
+app.get('/backpage', function(request, response){
+	sql = 'select distinct(city) from placesTable';
+	cities= []
+	db.all(sql,city, function(error, rows){
+		rows.forEach(function(row){
+			respData.push(row);
+		});
+		response.render('cities', {'cities':cities});
+	});
+});
+
 app.listen(8080, '0.0.0.0');
 console.log("Server is running on port 8080");
 
