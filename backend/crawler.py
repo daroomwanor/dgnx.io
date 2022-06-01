@@ -31,9 +31,9 @@ logging.basicConfig(level=logging.INFO)
 class placeFinder(object):
 
 	def googler(self,city, placeType):
+		display = Display(visible=0, size=(1200, 1200))
+		display.start()
 		try:
-			display = Display(visible=0, size=(1200, 1200))
-			display.start()
 			chrome_options = webdriver.ChromeOptions()
 			chrome_options.add_argument('--no-sandbox')
 			browser = webdriver.Chrome('/usr/bin/chromedriver', options=chrome_options)
@@ -47,10 +47,11 @@ class placeFinder(object):
 				thumbnails = imgs[k].get_attribute('src')
 				place = self.dictListData(ele[k].text)
 				self.uploadToDB(placeType,city,place,thumbnails)
+				places.append(place)
+			return places
+		finally:
 			display.stop()
 			os.popen("pkill Chrome")
-		finally:
-			pass
 
 	def isPlaceFound(self, placeName, city):
 		try:
@@ -100,7 +101,5 @@ if __name__ == '__main__':
 	cities = ['New York', 'Los Angeles', 'Chicago', 'Miami', 'Dallas', 'Philadelphia', 'Houston', 'Atlanta', 'Washington', 'Boston', 'Phoenix', 'Seattle', 'San Francisco', 'Detroit', 'San Diego', 'Minneapolis', 'Tampa', 'Denver', 'Brooklyn', 'Queens', 'Riverside', 'Baltimore', 'Las Vegas', 'Portland', 'San Antonio', 'St. Louis', 'Sacramento', 'Orlando', 'San Jose', 'Cleveland', 'Pittsburgh', 'Austin', 'Cincinnati', 'Kansas City', 'Manhattan', 'Indianapolis', 'Columbus', 'Charlotte', 'Virginia Beach', 'Bronx', 'Milwaukee', 'Providence', 'Jacksonville', 'Salt Lake City', 'Nashville', 'Richmond', 'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
 	placeTypes = ['restaurants', 'bars', 'nightclub', 'attractions', 'hotels']
 	for city in cities:
-		print(city)
 		for placeType in placeTypes:
 			pf.googler(city, placeType)
-			time.sleep(10.0)
