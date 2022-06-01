@@ -116,6 +116,6 @@ if __name__ == '__main__':
 		places = isPlaceFound(city)
 		for place in places:
 			try:
-				print(place['placeName'])
+				print(place[1])
 			finally:
 				pass
