@@ -37,7 +37,7 @@ class placeFinder(object):
 			chrome_options = webdriver.ChromeOptions()
 			chrome_options.add_argument('--no-sandbox')
 			browser = webdriver.Chrome('/usr/bin/chromedriver', options=chrome_options)
-			q = urllib.parse.quote_plus(placeType+" "+city)
+			q = urllib.parse.quote_plus(city+" "+placeType)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
 			browser.get(search)
 			ele = browser.find_elements(by=By.CLASS_NAME, value="rllt__details")
