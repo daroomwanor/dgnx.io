@@ -22,10 +22,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException,StaleElementReferenceException
 from page_objects import PageObject, MultiPageElement, PageElement
 import pysqlite3
-from selenium.webdriver.chrome.service import Service
 
 
-conn = pysqlite3.connect("/home/ubuntu/dgnx.io/frontend/db/vos.db")
+conn = pysqlite3.connect("/home/ubuntu/dgnx.io/vos.db")
 
 logging.basicConfig(level=logging.INFO)
 
@@ -35,11 +34,9 @@ class placeFinder(object):
 		display = Display(visible=0, size=(1200, 1200))
 		display.start()
 		try:
-			path = '/usr/bin/chromedriver'
-			s = Service(path)
 			chrome_options = webdriver.ChromeOptions()
 			chrome_options.add_argument('--no-sandbox')
-			browser = webdriver.Chrome(path, options=chrome_options)
+			browser = webdriver.Chrome('/usr/bin/chromedriver', options=chrome_options)
 			q = urllib.parse.quote_plus(placeType+" "+city)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
 			browser.get(search)
@@ -105,13 +102,11 @@ class placeFinder(object):
 
 if __name__ == '__main__':
 	pf = placeFinder()
-	cities_ = ['New York', 'Los Angeles', 'Chicago', 'Miami', 'Dallas', 'Philadelphia', 'Houston', 'Atlanta', 'Washington', 'Boston', 'Phoenix', 'Seattle', 'San Francisco', 'Detroit', 'San Diego', 'Minneapolis', 'Tampa', 'Denver', 'Brooklyn', 'Queens', 'Riverside', 'Baltimore', 'Las Vegas', 'Portland', 'San Antonio', 'St. Louis', 'Sacramento', 'Orlando', 'San Jose', 'Cleveland', 'Pittsburgh', 'Austin', 'Cincinnati', 'Kansas City', 'Manhattan', 'Indianapolis', 'Columbus', 'Charlotte', 'Virginia Beach', 'Bronx', 'Milwaukee', 'Providence', 'Jacksonville', 'Salt Lake City', 'Nashville', 'Richmond', 'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
-	cities = ['Sacramento', 'Orlando', 'San Jose', 'Cleveland', 'Pittsburgh', 'Austin', 'Cincinnati', 'Kansas City', 'Manhattan', 'Indianapolis', 'Columbus', 'Charlotte', 'Virginia Beach', 'Bronx', 'Milwaukee', 'Providence', 'Jacksonville', 'Salt Lake City', 'Nashville', 'Richmond', 'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
+	cities = ['New York', 'Los Angeles', 'Chicago', 'Miami', 'Dallas', 'Philadelphia', 'Houston', 'Atlanta', 'Washington', 'Boston', 'Phoenix', 'Seattle', 'San Francisco', 'Detroit', 'San Diego', 'Minneapolis', 'Tampa', 'Denver', 'Brooklyn', 'Queens', 'Riverside', 'Baltimore', 'Las Vegas', 'Portland', 'San Antonio', 'St. Louis', 'Sacramento', 'Orlando', 'San Jose', 'Cleveland', 'Pittsburgh', 'Austin', 'Cincinnati', 'Kansas City', 'Manhattan', 'Indianapolis', 'Columbus', 'Charlotte', 'Virginia Beach', 'Bronx', 'Milwaukee', 'Providence', 'Jacksonville', 'Salt Lake City', 'Nashville', 'Richmond', 'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
 	placeTypes = ['restaurants', 'bars', 'nightclub', 'attractions', 'hotels']
 	for city in cities:
 		for placeType in placeTypes:
 			try:
-				print(city)
 				pf.googler(city, placeType)
 			finally:
 				pass
