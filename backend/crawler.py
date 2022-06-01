@@ -36,10 +36,10 @@ class placeFinder(object):
 		display.start()
 		try:
 			path = '/usr/bin/chromedriver'
+			s = Service(path)
 			chrome_options = webdriver.ChromeOptions()
-			chrome_options.add_argument("start-maximized")
 			chrome_options.add_argument('--no-sandbox')
-			browser = webdriver.Chrome(options=chrome_options, service=Service(path))
+			browser = webdriver.Chrome(path, options=chrome_options)
 			q = urllib.parse.quote_plus(placeType+" "+city)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
 			browser.get(search)
@@ -50,7 +50,6 @@ class placeFinder(object):
 				thumbnails = imgs[k].get_attribute('src')
 				place = self.dictListData(ele[k].text)
 				self.uploadToDB(placeType,city,place,thumbnails)
-				print(places)
 				places.append(place)
 			return places
 		finally:
