@@ -38,9 +38,9 @@ app.get('/findPlaces', function(request,response){
 app.get('/backpage', function(request, response){
 	sql = 'select distinct(city) from placesTable';
 	cities= []
-	db.all(sql,city, function(error, rows){
+	db.all(sql, function(error, rows){
 		rows.forEach(function(row){
-			respData.push(row);
+			cities.push(row);
 		});
 		response.render('cities', {'cities':cities});
 	});
