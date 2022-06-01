@@ -94,9 +94,9 @@ class placeFinder(object):
 
 def isPlaceFound(city):
 	try:
-		query = "SELECT Id FROM placesTable WHERE city = ?"
+		query = 'SELECT Id FROM placesTable WHERE city = "'+city+'"'
 		cur = conn.cursor()
-		cur.execute(query,city)
+		cur.execute(query)
 		return cur.fetchall()
 	except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
 		print(e)
