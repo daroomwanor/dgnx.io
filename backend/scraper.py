@@ -113,6 +113,6 @@ if __name__ == '__main__':
 		print(city)
 		for place in places:
 			try:
-				print(place[1])
+				pf.googler(place[1],place[0])
 			finally:
 				pass
