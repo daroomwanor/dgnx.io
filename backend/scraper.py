@@ -46,8 +46,8 @@ class placeFinder(object):
 			browser.get(search)
 			ele = browser.find_elements(by=By.CLASS_NAME, value="UDZeY")
 			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
-			print(ele[0].text)
-			print(website[0].get_attribute('href'))
+			res = self.dictListData(ele[0].text)
+			print(res)
 		finally:
 			display.stop()
 			os.popen("pkill Chrome")
@@ -74,17 +74,15 @@ class placeFinder(object):
 		try:
 			split_input = str_input.split('\n')
 			if len(split_input) > 4:
-				res = {'Name': split_input[0], 
-						'Ratings': split_input[1],
-						'Tag': split_input[2],
-						'Address':split_input[3],
-						'Description': split_input[4],}
+				res = {'Info': split_input[0], 
+						'Address': split_input[2],
+						'Hours':split_input[3],
+						'Description': split_input[6],}
 			else:
-				res = {'Name': split_input[0], 
-						'Ratings': split_input[1],
-						'Tag': split_input[2],
-						'Address':split_input[3],
-						'Description': "None",}
+				res = {'Info': split_input[0], 
+						'Address': split_input[2],
+						'Hours':split_input[3],
+						'Description': split_input[6],}
 		finally:
 			return res
 
