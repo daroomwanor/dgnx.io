@@ -47,7 +47,8 @@ class placeFinder(object):
 			ele = browser.find_elements(by=By.CLASS_NAME, value="UDZeY")
 			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
 			res = self.dictListData(ele[0].text)
-			print(res)
+			for x in res:
+				print(x)
 		finally:
 			display.stop()
 			os.popen("pkill Chrome")
