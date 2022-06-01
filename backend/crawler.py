@@ -108,8 +108,9 @@ if __name__ == '__main__':
 	pf = placeFinder()
 	cities_ = ['New York', 'Los Angeles', 'Chicago', 'Miami', 'Dallas', 'Philadelphia', 'Houston', 'Atlanta', 'Washington', 'Boston', 'Phoenix', 'Seattle', 'San Francisco', 'Detroit', 'San Diego', 'Minneapolis', 'Tampa', 'Denver', 'Brooklyn', 'Queens', 'Riverside', 'Baltimore', 'Las Vegas', 'Portland', 'San Antonio', 'St. Louis', 'Sacramento', 'Orlando', 'San Jose', 'Cleveland', 'Pittsburgh', 'Austin', 'Cincinnati', 'Kansas City', 'Manhattan', 'Indianapolis', 'Columbus', 'Charlotte', 'Virginia Beach', 'Bronx', 'Milwaukee', 'Providence', 'Jacksonville', 'Salt Lake City', 'Nashville', 'Richmond', 'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
 	cities = ['Jacksonville', 'Salt Lake City', 'Nashville', 'Richmond', 'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
+	global_cities = ['Jakarta', 'Sao Paulo', 'Mexico City', 'Cairo', 'Lagos', 'Rio de Janeiro', 'Paris', 'London', 'Bogota', 'Madrid', 'Giza', 'Nairobi', 'Toronto', 'Guadalajara', 'Belo Horizonte', 'Surabaya', 'Alexandria', 'Barcelona', 'Johannesburg', 'Monterrey', 'Montreal', 'Brasilia', 'Birmingham', 'Salvador', 'Rome', 'Kano', 'Manchester', 'Ibadan', 'Medellin', 'Cali', 'Fortaleza', 'Bandung', 'Bekasi', 'Tijuana', 'Accra', 'Vancouver', 'Tangerang', 'Medan', 'Kumasi', 'Leeds', 'Curitiba', 'Meru', 'Manaus', 'Ecatepec', 'Makassar', 'Newcastle', 'Depok', 'Semarang', 'Puebla', 'Recife', 'Madinat as Sadis min Uktubar', 'Belem', 'Porto Alegre', 'Onitsha', 'Palembang', 'Leon de los Aldama', 'Birstall', 'Owerri', 'Goiania', 'Milan', 'Guarulhos', 'Juarez', 'Barranquilla', 'Calgary', 'Abuja', 'Vila Velha', 'Mombasa', 'Maiduguri', 'Benin City', 'Cilacap', 'Bandar Lampung', 'Campinas', 'Zapopan', 'Ciudad Nezahualcoyotl', 'Nezahualcoyotl', 'Sevilla', 'Mexicali', 'Ikare', 'Sao Goncalo', 'Vereeniging', 'Sao Luis', 'Edmonton', 'Bogor', 'Cartagena', 'Ogbomoso', 'Maceio', 'Patam', 'Shubra al Khaymah', 'Nice', 'Port Harcourt']
 	placeTypes = ['restaurants', 'bars', 'nightclub', 'attractions', 'hotels']
-	for city in cities:
+	for city in global_cities:
 		print(city)
 		for placeType in placeTypes:
 			try:
