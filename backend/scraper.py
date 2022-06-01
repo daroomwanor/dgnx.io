@@ -92,7 +92,7 @@ class placeFinder(object):
 		finally:
 			return res
 
-def isPlaceFound(self, placeName, city):
+def isPlaceFound(placeName, city):
 	try:
 		query = "SELECT Id FROM placesTable WHERE placeName = ? AND city = ?"
 		cur = conn.cursor()
