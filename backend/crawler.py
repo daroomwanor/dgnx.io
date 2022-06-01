@@ -35,10 +35,10 @@ class placeFinder(object):
 		display.start()
 		try:
 			chrome_options = webdriver.ChromeOptions()
-			chrome_options.add_arguments("start-maximized")
+			chrome_options.add_argument("start-maximized")
 			chrome_options.add_argument('--no-sandbox')
-			chrome_options.add_arguments("disable-infobars")
-			chrome_options.add_arguments("--disable-dev-shm-usage")
+			chrome_options.add_argument("disable-infobars")
+			chrome_options.add_argument("--disable-dev-shm-usage")
 			browser = webdriver.Chrome('/usr/bin/chromedriver', options=chrome_options)
 			q = urllib.parse.quote_plus(placeType+" "+city)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
@@ -106,3 +106,4 @@ if __name__ == '__main__':
 	for city in cities:
 		for placeType in placeTypes:
 			pf.googler(city, placeType)
+			time.sleep(10.0)
