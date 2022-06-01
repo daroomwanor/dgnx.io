@@ -44,10 +44,9 @@ class placeFinder(object):
 			search = 'https://www.google.com/search?q='+q
 			print(search)
 			browser.get(search)
-			ele = browser.find_elements(by=By.CLASS_NAME, value="sATSHe")
+			ele = browser.find_elements(by=By.CLASS_NAME, value="UDZeY")
 			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
 			for x in range(len(ele)):
-				print(ele)
 				print(ele[x].text)
 		finally:
 			display.stop()
