@@ -31,7 +31,7 @@ logging.basicConfig(level=logging.INFO)
 
 class placeFinder(object):
 
-	def googler(self,city, placeType):
+	def googler(self,placeName,city):
 		display = Display(visible=0, size=(1200, 1200))
 		display.start()
 		try:
@@ -40,18 +40,14 @@ class placeFinder(object):
 			chrome_options = webdriver.ChromeOptions()
 			chrome_options.add_argument('--no-sandbox')
 			browser = webdriver.Chrome(path, options=chrome_options)
-			q = urllib.parse.quote_plus(placeType+" "+city)
-			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
+			q = urllib.parse.quote_plus(placeName+" "+city)
+			search = 'https://www.google.com/search?q='+q
 			browser.get(search)
-			ele = browser.find_elements(by=By.CLASS_NAME, value="rllt__details")
-			places = []
-			imgs = browser.find_elements(by=By.CLASS_NAME, value="tLipRb")
-			for k in range(len(ele)):
-				thumbnails = imgs[k].get_attribute('src')
-				place = self.dictListData(ele[k].text)
-				self.uploadToDB(placeType,city,place,thumbnails)
-				places.append(place)
-			return places
+			ele = browser.find_elements(by=By.CLASS_NAME, value="sATSHe")
+			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
+			print(ele.text)
+			print(website.get_attribute('href'))
+
 		finally:
 			display.stop()
 			os.popen("pkill Chrome")
@@ -112,7 +108,7 @@ if __name__ == '__main__':
 	'Bronx', 'Milwaukee', 'Providence', 'Jacksonville', 'Salt Lake City', 'Nashville', 'Richmond', 
 	'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
 
-	for city in us_cities:
+	for city in ['Las Vegas', 'Boston']:
 		places = isPlaceFound(city)
 		print(city)
 		for place in places:
