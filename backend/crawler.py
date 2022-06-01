@@ -69,13 +69,13 @@ class placeFinder(object):
 
 	def uploadToDB(self,placeType,city,place,thumbnails):
 		try:
+			print(place)
 			if len(self.isPlaceFound(place['Name'],city)) == 0:
 				guid = str(uuid.uuid4())
 				query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews,thumbnails,address) VALUES(?,?,?,?,?,?,?,?)"
 				cur = conn.cursor()
 				cur.execute(query, (guid, city, placeType, place['Name'], place['Ratings'], place['Tag'], thumbnails, place['Address']))
 				conn.commit()
-				print(cur.lastrowid)
 				return cur.lastrowid
 			else:
 				print("Logged")
