@@ -46,8 +46,7 @@ class placeFinder(object):
 			browser.get(search)
 			ele = browser.find_elements(by=By.CLASS_NAME, value="UDZeY")
 			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
-			for x in range(len(ele)):
-				print("---"+ele[x].text)
+			print(ele[0].text)
 		finally:
 			display.stop()
 			os.popen("pkill Chrome")
@@ -114,5 +113,6 @@ if __name__ == '__main__':
 		for place in places:
 			try:
 				pf.googler(place[1],place[2])
+				time.sleep(5.0)
 			finally:
 				pass
