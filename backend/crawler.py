@@ -22,6 +22,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException,StaleElementReferenceException
 from page_objects import PageObject, MultiPageElement, PageElement
 import pysqlite3
+from selenium.webdriver.chrome.service import Service
 
 
 conn = pysqlite3.connect("/home/ubuntu/dgnx.io/frontend/db/vos.db")
@@ -34,9 +35,11 @@ class placeFinder(object):
 		display = Display(visible=0, size=(1200, 1200))
 		display.start()
 		try:
+			path = '/usr/bin/chromedriver'
+			s = Service(path)
 			chrome_options = webdriver.ChromeOptions()
 			chrome_options.add_argument('--no-sandbox')
-			browser = webdriver.Chrome('/usr/bin/chromedriver', options=chrome_options)
+			browser = webdriver.Chrome(path, options=chrome_options, services=s)
 			q = urllib.parse.quote_plus(placeType+" "+city)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
 			browser.get(search)
