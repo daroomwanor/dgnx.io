@@ -92,12 +92,16 @@ class placeFinder(object):
 		finally:
 			return res
 
-def getPlaces(cityName):
-	query = "SELECT Id, placeName, city, guid FROM placesTable WHERE city = ?"
-	cur = conn.cursor()
-	cur.execute(query, (cityName))
-	rows = cur.fetchall()
-	return rows
+def isPlaceFound(self, placeName, city):
+	try:
+		query = "SELECT Id FROM placesTable WHERE placeName = ? AND city = ?"
+		cur = conn.cursor()
+		cur.execute(query,(placeName,city))
+		return cur.fetchall()
+	except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
+		print(e)
+	finally:
+		pass
 
 if __name__ == '__main__':
 	pf = placeFinder()
@@ -109,7 +113,7 @@ if __name__ == '__main__':
 	'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
 
 	for city in us_cities:
-		places = getPlaces(city)
+		places = isPlaceFound(city, "Eureka")
 		for place in places:
 			try:
 				print(place)
