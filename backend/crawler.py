@@ -111,6 +111,7 @@ if __name__ == '__main__':
 	for city in cities:
 		for placeType in placeTypes:
 			try:
+				print(city)
 				pf.googler(city, placeType)
 			finally:
 				pass
