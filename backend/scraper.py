@@ -94,7 +94,7 @@ class placeFinder(object):
 
 def isPlaceFound(city):
 	try:
-		query = 'SELECT * FROM placesTable WHERE city = "'+city+'"'
+		query = 'SELECT guid,placeName,city FROM placesTable WHERE city = "'+city+'"'
 		cur = conn.cursor()
 		cur.execute(query)
 		return cur.fetchall()
@@ -116,6 +116,6 @@ if __name__ == '__main__':
 		places = isPlaceFound(city)
 		for place in places:
 			try:
-				print(place)
+				print(place['placeName'])
 			finally:
 				pass
