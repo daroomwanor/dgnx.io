@@ -42,7 +42,7 @@ app.get('/backpage', function(request, response){
 		rows.forEach(function(row){
 			cities.push(row);
 		});
-		response.render('cities', {'cities':cities});
+		response.render('home', {'cities':cities});
 	});
 });
 
