@@ -93,7 +93,7 @@ class placeFinder(object):
 			return res
 
 def getPlaces(cityName):
-	query = "SELECT * FROM placesTable WHERE city = ?"
+	query = "SELECT Id, placeName, city, guid FROM placesTable WHERE city = ?"
 	cur = conn.cursor()
 	cur.execute(query, (cityName))
 	rows = cur.fetchall()
