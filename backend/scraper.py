@@ -96,7 +96,7 @@ def isPlaceFound(city):
 	try:
 		query = "SELECT Id FROM placesTable WHERE city = ?"
 		cur = conn.cursor()
-		cur.execute(query,(city))
+		cur.execute(query,city)
 		return cur.fetchall()
 	except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
 		print(e)
