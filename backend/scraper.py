@@ -114,6 +114,7 @@ if __name__ == '__main__':
 
 	for city in us_cities:
 		places = isPlaceFound(city)
+		print(city)
 		for place in places:
 			try:
 				print(place[1])
