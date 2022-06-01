@@ -92,11 +92,11 @@ class placeFinder(object):
 		finally:
 			return res
 
-def isPlaceFound(placeName, city):
+def isPlaceFound(city):
 	try:
-		query = "SELECT Id FROM placesTable WHERE placeName = ? AND city = ?"
+		query = "SELECT Id FROM placesTable WHERE city = ?"
 		cur = conn.cursor()
-		cur.execute(query,(placeName,city))
+		cur.execute(query,(city))
 		return cur.fetchall()
 	except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
 		print(e)
@@ -113,7 +113,7 @@ if __name__ == '__main__':
 	'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
 
 	for city in us_cities:
-		places = isPlaceFound(city, "Eureka")
+		places = isPlaceFound(city)
 		for place in places:
 			try:
 				print(place)
