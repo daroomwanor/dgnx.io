@@ -50,6 +50,7 @@ class placeFinder(object):
 				thumbnails = imgs[k].get_attribute('src')
 				place = self.dictListData(ele[k].text)
 				self.uploadToDB(placeType,city,place,thumbnails)
+				print(places)
 				places.append(place)
 			return places
 		finally:
@@ -111,6 +112,6 @@ if __name__ == '__main__':
 	for city in cities:
 		for placeType in placeTypes:
 			try:
-				pf.googler("Las Vegas", "bars")
+				pf.googler(city, placeType)
 			finally:
 				pass
