@@ -42,11 +42,14 @@ class placeFinder(object):
 			browser = webdriver.Chrome(path, options=chrome_options)
 			q = urllib.parse.quote_plus(placeName+" "+city)
 			search = 'https://www.google.com/search?q='+q
+			print(search)
 			browser.get(search)
 			ele = browser.find_elements(by=By.CLASS_NAME, value="sATSHe")
 			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
 			print(ele)
 			print(website)
+			if len(ele) > 0:
+				ele.get_attribute('innerHTML')
 
 		finally:
 			display.stop()
