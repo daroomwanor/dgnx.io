@@ -49,9 +49,10 @@ class placeFinder(object):
 			for k in range(len(ele)):
 				thumbnails = imgs[k].get_attribute('src')
 				place = self.dictListData(ele[k].text)
-				self.uploadToDB(placeType,city,place,thumbnails)
-				places.append(place)
-			return places
+				if "Name" in place.keys():
+					self.uploadToDB(placeType,city,place,thumbnails)
+		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
+			pass
 		finally:
 			display.stop()
 			os.popen("sudo pkill Chrome")
