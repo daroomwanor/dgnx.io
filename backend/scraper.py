@@ -45,8 +45,8 @@ class placeFinder(object):
 			browser.get(search)
 			ele = browser.find_elements(by=By.CLASS_NAME, value="sATSHe")
 			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
-			print(ele)
-			print(website)
+			if len(ele) > 0:
+				print(ele.text)
 
 		finally:
 			display.stop()
