@@ -61,6 +61,8 @@ class placeFinder(object):
 			return cur.fetchall()
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
+		finally:
+			pass
 
 	def uploadToDB(self,placeType,city,place,thumbnails):
 		try:
@@ -76,6 +78,8 @@ class placeFinder(object):
 				print("Logged")
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
+		finally:
+			print(place)
 
 	def dictListData(self, str_input):
 		res = {}
