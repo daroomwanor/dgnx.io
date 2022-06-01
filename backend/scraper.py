@@ -35,7 +35,7 @@ class placeFinder(object):
 		display = Display(visible=0, size=(1200, 1200))
 		display.start()
 		try:
-			path = '/usr/local/bin/chromedriver'
+			path = '/usr/bin/chromedriver'
 			s = Service(path)
 			chrome_options = webdriver.ChromeOptions()
 			chrome_options.add_argument('--no-sandbox')
