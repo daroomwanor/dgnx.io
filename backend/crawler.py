@@ -59,7 +59,7 @@ class placeFinder(object):
 			cur = conn.cursor()
 			cur.execute(query,(placeName,city))
 			return cur.fetchall()
-		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
+		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
 			print(e)
 		finally:
 			pass
@@ -76,10 +76,10 @@ class placeFinder(object):
 				return cur.lastrowid
 			else:
 				print("Logged")
-		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
+		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
 			print(e)
 		finally:
-			print(place)
+			print(city)
 
 	def dictListData(self, str_input):
 		res = {}
@@ -106,4 +106,7 @@ if __name__ == '__main__':
 	placeTypes = ['restaurants', 'bars', 'nightclub', 'attractions', 'hotels']
 	for city in cities:
 		for placeType in placeTypes:
-			pf.googler(city, placeType)
+			try:
+				pf.googler(city, placeType)
+			finally:
+				pass
