@@ -110,5 +110,6 @@ if __name__ == '__main__':
 		for placeType in placeTypes:
 			try:
 				pf.googler(city, placeType)
+				time.sleep(10.0)
 			finally:
 				pass
