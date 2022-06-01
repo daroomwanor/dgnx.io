@@ -35,7 +35,10 @@ class placeFinder(object):
 		display.start()
 		try:
 			chrome_options = webdriver.ChromeOptions()
+			chrome_options.addArguments("start-maximized")
 			chrome_options.add_argument('--no-sandbox')
+			chrome_options.addArguments("disable-infobars")
+			chrome_options.addArguments("--disable-dev-shm-usage")
 			browser = webdriver.Chrome('/usr/bin/chromedriver', options=chrome_options)
 			q = urllib.parse.quote_plus(placeType+" "+city)
 			search = 'https://www.google.com/search?tbs=lf:1,lf_ui:9&tbm=lcl&q='+q
@@ -51,7 +54,7 @@ class placeFinder(object):
 			return places
 		finally:
 			display.stop()
-			os.popen("pkill Chrome")
+			os.popen("sudo pkill Chrome")
 
 	def isPlaceFound(self, placeName, city):
 		try:
