@@ -73,19 +73,9 @@ class placeFinder(object):
 		res = {}
 		try:
 			split_input = str_input.split('\n')
-			if len(split_input) > 4:
-				res = {'Info': split_input[0], 
-						'Address': split_input[2],
-						'Hours':split_input[3],
-						'Description': split_input[6],}
-			else:
-				res = {'Info': split_input[0], 
-						'Address': split_input[2],
-						'Hours':split_input[3],
-						'Description': split_input[6],}
+			return split_input
 		finally:
-			return res
-
+			pass
 def isPlaceFound(city):
 	try:
 		query = 'SELECT guid,placeName,city FROM placesTable WHERE city = "'+city+'"'
