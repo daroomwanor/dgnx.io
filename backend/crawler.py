@@ -47,13 +47,11 @@ class placeFinder(object):
 			places = []
 			imgs = browser.find_elements(by=By.CLASS_NAME, value="tLipRb")
 			for k in range(len(ele)):
-				try:
-					thumbnails = imgs[k].get_attribute('src')
-					place = self.dictListData(ele[k].text)
-					self.uploadToDB(placeType,city,place,thumbnails)
-					places.append(place)
-				finally:
-					return places
+				thumbnails = imgs[k].get_attribute('src')
+				place = self.dictListData(ele[k].text)
+				self.uploadToDB(placeType,city,place,thumbnails)
+				places.append(place)
+			return places
 		finally:
 			display.stop()
 			os.popen("sudo pkill Chrome")
@@ -66,6 +64,8 @@ class placeFinder(object):
 			return cur.fetchall()
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
+		finally:
+			pass
 
 	def uploadToDB(self,placeType,city,place,thumbnails):
 		try:
@@ -81,6 +81,8 @@ class placeFinder(object):
 				print("Logged")
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError) as e:
 			print(e)
+		finally:
+			pass
 
 	def dictListData(self, str_input):
 		res = {}
