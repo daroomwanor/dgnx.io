@@ -143,7 +143,7 @@ if __name__ == '__main__':
 				
 				pf.uploadToDB(data['Address'], data['Phone'], data['Website'], data['Info'], data['Hours'], place[0])
 				time.sleep(2.0)
-			except (RuntimeError, TypeError, NameError,KeyError, NoneType) as e:
+			except (RuntimeError, TypeError, NameError,KeyError, AttributeError) as e:
 				print(e)
 			finally:
 				pass
