@@ -75,12 +75,25 @@ class placeFinder(object):
 			print(e)
 		finally:
 			print(city)
+	
+	def checkLine(self, line):
+		res = {}
+		split_line = line.split(':')
+		if split_line[0] == "Address":
+			res['Address']= split_line[1]
+		if split_line[0] == "Phone":
+			res['Phone'] = split_line[1]
+		split_str = line.split('·')
+		if split_str[0] in ["Closes", "Open"]:
+			res['Hours'] = split_str[1]
+		return res
 
 	def dictListData(self, str_input):
-		res = {}
+		res = []
 		try:
 			split_input = str_input.split('\n')
-			return split_input
+			for x in split_input:
+				res.append(self.checkLine(x))
 		finally:
 			pass
 def isPlaceFound(city):
