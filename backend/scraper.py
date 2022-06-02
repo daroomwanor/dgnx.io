@@ -65,7 +65,7 @@ class placeFinder(object):
 			query = "UPDATE placesTable SET address = ?, phone = ?, website= ?, description = ?, info = ? WHERE guid = ?"
 			cur = conn.cursor()
 			cur.execute(query, (address, phone, website, description, hours, guid))
-			#conn.commit()
+			conn.commit()
 			print(cur.lastrowid)
 			return cur.lastrowid
 			print("Logged")
@@ -81,7 +81,7 @@ class placeFinder(object):
 			res['Address']= split_line[1]
 		if split_line[0] == "Phone":
 			res['Phone'] = split_line[1]
-		split_str = line.split(' ')
+		split_str = line.split("")
 		if split_str[0] in ["Closes", "Open"]:
 			res['Hours'] = line
 		return res
