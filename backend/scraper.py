@@ -50,12 +50,12 @@ class placeFinder(object):
 			if len(ele) > 0:
 				res = self.dictListData(ele[0].text)
 				res.append({'Website':website[0].get_attribute('href')})
-				print(res)
 			else:
 				web_details = browser.find_elements(by=By.CLASS_NAME, value="rllt__details")
 				res.append({'Address':web_details[1].text})
-				print(res)
-
+			return res
+		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError,IndexError) as e:
+			print(e)
 		finally:
 			display.stop()
 			os.popen("pkill Chrome")
@@ -64,9 +64,9 @@ class placeFinder(object):
 		try:
 			if len(self.isPlaceFound(place['Name'],city)) == 0:
 				guid = str(uuid.uuid4())
-				query = "INSERT INTO placesTable(guid, city, placeType, placeName, ratings, reviews,thumbnails) VALUES(?,?,?,?,?,?,?)"
+				query = "UPDATE placesTable SET address = ?, phone = ?, website= ?, description = ? WHERE guid = ?"
 				cur = conn.cursor()
-				cur.execute(query, (guid, city, placeType, place['Name'], place['Ratings'], place['Tag'], thumbnails))
+				cur.execute(query, ())
 				conn.commit()
 				print(cur.lastrowid)
 				return cur.lastrowid
@@ -90,21 +90,22 @@ class placeFinder(object):
 		return res
 
 	def dictListData(self, str_input):
-		res = []
+		res = {}
 		try:
 			split_input = str_input.split('\n')
-			res.append({'Info': split_input[0]})
+			res['Info'] = split_input[0]
 			for x in split_input:
 				line = self.checkLine(x)
 				if "Address" in line.keys():
-					res.append(line)
+					res['Address'] = line["Address"]
 				if "Phone" in line.keys():
-					res.append(line)
+					res['Phone'] = line["Phone"]
 				if "Hours" in line.keys():
-					res.append()
+					res['Hours'] = line["Hours"]
 			return res
 		finally:
 			pass
+
 def isPlaceFound(city):
 	try:
 		query = 'SELECT guid,placeName,city FROM placesTable WHERE city = "'+city+'"'
@@ -130,7 +131,8 @@ if __name__ == '__main__':
 		print(city)
 		for place in places:
 			try:
-				pf.googler(place[1],place[2])
+				data = pf.googler(place[1],place[2])
+				print(data)
 				time.sleep(5.0)
 			finally:
 				pass
