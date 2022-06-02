@@ -142,7 +142,7 @@ if __name__ == '__main__':
 					data['Hours'] = None
 				
 				pf.uploadToDB(data['Address'], data['Phone'], data['Website'], data['Info'], data['Hours'], place[0])
-				time.sleep(2.0)
+				time.sleep(1.0)
 			except (RuntimeError, TypeError, NameError,KeyError, AttributeError) as e:
 				print(e)
 			finally:
