@@ -49,11 +49,11 @@ class placeFinder(object):
 			res=[]
 			if len(ele) > 0:
 				res = self.dictListData(ele[0].text)
-				res.append(website[0].get_attribute('href'))
+				res.append({'Website':website[0].get_attribute('href')})
 				print(res)
 			else:
 				web_details = browser.find_elements(by=By.CLASS_NAME, value="rllt__details")
-				res.append({'Address':web_details[1]})
+				res.append({'Address':web_details[1].text})
 				print(res)
 
 		finally:
@@ -93,6 +93,7 @@ class placeFinder(object):
 		res = []
 		try:
 			split_input = str_input.split('\n')
+			res.append({'Info': split_input[0]})
 			for x in split_input:
 				line = self.checkLine(x)
 				if "Address" in line.keys():
