@@ -94,6 +94,7 @@ class placeFinder(object):
 			split_input = str_input.split('\n')
 			for x in split_input:
 				res.append(self.checkLine(x))
+			return res
 		finally:
 			pass
 def isPlaceFound(city):
