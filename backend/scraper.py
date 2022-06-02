@@ -46,14 +46,15 @@ class placeFinder(object):
 			browser.get(search)
 			ele = browser.find_elements(by=By.CLASS_NAME, value="UDZeY")
 			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
+			res=[]
 			if len(ele) > 0:
 				res = self.dictListData(ele[0].text)
-				for x in res:
-					print(x)
+				res.append(website[0].get_attribute('href'))
+				print(res)
 			else:
 				web_details = browser.find_elements(by=By.CLASS_NAME, value="rllt__details")
-				for x in web_details:
-					print(x.text)
+				res.append({'Address':web_details[1]})
+				print(res)
 
 		finally:
 			display.stop()
