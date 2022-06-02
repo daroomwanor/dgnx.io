@@ -49,7 +49,7 @@ class placeFinder(object):
 			if len(ele) > 0:
 				res = self.dictListData(ele[0].text)
 				for x in range(len(res)):
-				print(str(x)+".) "+res[x])
+					print(str(x)+".) "+res[x])
 			else:
 				web_details = browser.find_elements(by=By.CLASS_NAME, value="rllt__details")
 				for x in web_details:
