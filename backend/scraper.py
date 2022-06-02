@@ -95,10 +95,16 @@ class placeFinder(object):
 				line = self.checkLine(x)
 				if "Address" in line.keys():
 					res['Address'] = line["Address"]
+				else:
+					res['Address'] = None
 				if "Phone" in line.keys():
 					res['Phone'] = line["Phone"]
+				else:
+					res['Phone'] = None
 				if "Hours" in line.keys():
 					res['Hours'] = line["Hours"]
+				else:
+					res['Hours'] = None
 			return res
 		finally:
 			pass
