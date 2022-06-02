@@ -66,6 +66,9 @@ class placeFinder(object):
 			cur = conn.cursor()
 			cur.execute(query, (address, phone, website, description, hours, guid))
 			conn.commit()
+			print(cur.lastrowid)
+			return cur.lastrowid
+			print("Logged")
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
 			print(e)
 		finally:
@@ -106,7 +109,7 @@ def isPlaceFound(city):
 		cur = conn.cursor()
 		cur.execute(query)
 		return cur.fetchall()
-	except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
+	except (RuntimeError, TypeError, NameError,KeyError, NoneType) as e:
 		print(e)
 	finally:
 		pass
@@ -126,23 +129,21 @@ if __name__ == '__main__':
 		for place in places:
 			try:
 				data = pf.googler(place[1],place[2])
-				print(palce[2])
 				print(data)
-				if data is not None:
-					if "Phone" not in data.keys():
-						data['Phone'] = None
-					if "Address" not in data.keys():
-						data['Address'] = None
-					if "Website" not in data.keys():
-						data['Website'] = None
-					if "Info" not in data.keys():
-						data['Info'] = None
-					if "Hours" not in data.keys():
-						data['Hours'] = None
-					
-					pf.uploadToDB(data['Address'], data['Phone'], data['Website'], data['Info'], data['Hours'], place[0])
-					time.sleep(2.0)
-			except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
-				pass
+				if "Phone" not in data.keys():
+					data['Phone'] = None
+				if "Address" not in data.keys():
+					data['Address'] = None
+				if "Website" not in data.keys():
+					data['Website'] = None
+				if "Info" not in data.keys():
+					data['Info'] = None
+				if "Hours" not in data.keys():
+					data['Hours'] = None
+				
+				pf.uploadToDB(data['Address'], data['Phone'], data['Website'], data['Info'], data['Hours'], place[0])
+				time.sleep(2.0)
+			except (RuntimeError, TypeError, NameError,KeyError, NoneType) as e:
+				print(e)
 			finally:
 				pass
