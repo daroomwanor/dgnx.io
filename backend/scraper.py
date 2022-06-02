@@ -46,13 +46,13 @@ class placeFinder(object):
 			browser.get(search)
 			ele = browser.find_elements(by=By.CLASS_NAME, value="UDZeY")
 			website = browser.find_elements(by=By.CLASS_NAME, value="ab_button")
-			res=[]
+			res={}
 			if len(ele) > 0:
 				res = self.dictListData(ele[0].text)
-				res.append({'Website':website[0].get_attribute('href')})
+				res['Website']= website[0].get_attribute('href')
 			else:
 				web_details = browser.find_elements(by=By.CLASS_NAME, value="rllt__details")
-				res.append({'Address':web_details[1].text})
+				res['Address'] = web_details[1].text
 			return res
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError,IndexError) as e:
 			print(e)
