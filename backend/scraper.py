@@ -95,16 +95,10 @@ class placeFinder(object):
 				line = self.checkLine(x)
 				if "Address" in line.keys():
 					res['Address'] = line["Address"]
-				else:
-					res['Address'] = None
 				if "Phone" in line.keys():
 					res['Phone'] = line["Phone"]
-				else:
-					res['Phone'] = None
 				if "Hours" in line.keys():
 					res['Hours'] = line["Hours"]
-				else:
-					res['Hours'] = None
 			return res
 		finally:
 			pass
@@ -136,6 +130,16 @@ if __name__ == '__main__':
 			try:
 				data = pf.googler(place[1],place[2])
 				print(data)
+				if "Phone" not in data.keys():
+					data['Phone'] = None
+				if "Address" not in data.keys():
+					data['Address'] = None
+				if "Website" not in data.keys():
+					data['Website'] = None
+				if "Info" not in data.keys():
+					data['Info'] = None
+				if "Hours" not in data.keys():
+					data['Info'] = None
 				pf.uploadToDB(data['Address'], data['Phone'], data['Website'], data['Info'], data['Hours'], place[0])
 				time.sleep(5.0)
 			finally:
