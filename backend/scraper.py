@@ -81,9 +81,9 @@ class placeFinder(object):
 			res['Address']= split_line[1]
 		if split_line[0] == "Phone":
 			res['Phone'] = split_line[1]
-		split_str = line.split('·')
+		split_str = line.split(' ')
 		if split_str[0] in ["Closes", "Open"]:
-			res['Hours'] = split_str[1]
+			res['Hours'] = line
 		return res
 
 	def dictListData(self, str_input):
