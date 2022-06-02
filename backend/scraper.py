@@ -60,18 +60,15 @@ class placeFinder(object):
 			display.stop()
 			os.popen("pkill Chrome")
 
-	def uploadToDB(self,placeType,city,place,thumbnails):
+	def uploadToDB(self,address,phone,website,description,hours,guid):
 		try:
-			if len(self.isPlaceFound(place['Name'],city)) == 0:
-				guid = str(uuid.uuid4())
-				query = "UPDATE placesTable SET address = ?, phone = ?, website= ?, description = ? WHERE guid = ?"
-				cur = conn.cursor()
-				cur.execute(query, ())
-				conn.commit()
-				print(cur.lastrowid)
-				return cur.lastrowid
-			else:
-				print("Logged")
+			query = "UPDATE placesTable SET address = ?, phone = ?, website= ?, description = ?, info = ? WHERE guid = ?"
+			cur = conn.cursor()
+			cur.execute(query, (address, phone, website, description, hours, guid))
+			#conn.commit()
+			print(cur.lastrowid)
+			return cur.lastrowid
+			print("Logged")
 		except (RuntimeError, TypeError, NameError, pysqlite3.OperationalError,KeyError) as e:
 			print(e)
 		finally:
@@ -132,7 +129,7 @@ if __name__ == '__main__':
 		for place in places:
 			try:
 				data = pf.googler(place[1],place[2])
-				print(data)
+				pf.uploadToDB(data['Address'], data['Phone'], data['Website'], data['Info'], data['Hours'], place[0])
 				time.sleep(5.0)
 			finally:
 				pass
