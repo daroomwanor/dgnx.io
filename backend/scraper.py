@@ -96,6 +96,10 @@ class placeFinder(object):
 				line = self.checkLine(x)
 				if "Address" in line.keys():
 					res.append(line)
+				if "Phone" in line.keys():
+					res.append(line)
+				if "Hours" in line.keys():
+					res.append()
 			return res
 		finally:
 			pass
