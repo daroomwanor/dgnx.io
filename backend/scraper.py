@@ -93,7 +93,9 @@ class placeFinder(object):
 		try:
 			split_input = str_input.split('\n')
 			for x in split_input:
-				res.append(self.checkLine(x))
+				line = self.checkLine(x)
+				if "Address" in line.keys():
+					res.append(line)
 			return res
 		finally:
 			pass
