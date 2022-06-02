@@ -123,7 +123,7 @@ if __name__ == '__main__':
 	'Bronx', 'Milwaukee', 'Providence', 'Jacksonville', 'Salt Lake City', 'Nashville', 'Richmond', 
 	'Memphis', 'Raleigh', 'New Orleans', 'Louisville']
 
-	for city in ['Las Vegas', 'Boston']:
+	for city in us_cities:
 		places = isPlaceFound(city)
 		print(city)
 		for place in places:
