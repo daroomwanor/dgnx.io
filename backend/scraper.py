@@ -81,7 +81,7 @@ class placeFinder(object):
 			res['Address']= split_line[1]
 		if split_line[0] == "Phone":
 			res['Phone'] = split_line[1]
-		split_str = line.split("")
+		split_str = line.split(" ")
 		if split_str[0] in ["Closes", "Open"]:
 			res['Hours'] = line
 		return res
@@ -129,6 +129,7 @@ if __name__ == '__main__':
 		for place in places:
 			try:
 				data = pf.googler(place[1],place[2])
+				print(data)
 				pf.uploadToDB(data['Address'], data['Phone'], data['Website'], data['Info'], data['Hours'], place[0])
 				time.sleep(5.0)
 			finally:
