@@ -139,7 +139,8 @@ if __name__ == '__main__':
 				if "Info" not in data.keys():
 					data['Info'] = None
 				if "Hours" not in data.keys():
-					data['Info'] = None
+					data['Hours'] = None
+				
 				pf.uploadToDB(data['Address'], data['Phone'], data['Website'], data['Info'], data['Hours'], place[0])
 				time.sleep(5.0)
 			finally:
