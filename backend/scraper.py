@@ -124,11 +124,12 @@ if __name__ == '__main__':
 
 	for city in us_cities:
 		places = isPlaceFound(city)
-		print(city)
+		logging.info('Scraped For '+f'{city}')
 		for place in places:
 			try:
 				data = pf.googler(place[1],place[2])
 				print(data)
+				logging.info('Got: '+f'{data}')
 				if "Phone" not in data.keys():
 					data['Phone'] = None
 				if "Address" not in data.keys():
