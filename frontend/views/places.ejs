@@ -1,0 +1,89 @@
+<div style="color:white">
+  <div id="food" class="w3-container city" style="position: absolute !important;min-width: 388px;">
+      <p>
+        We found American, French, Chinese, Italian, Restuarants. With Reviews of over 120k, here is our top Recommendartion:
+      </p>
+      <hr>
+      <% places.forEach(function(place){%>
+        <% if(place.placeType == "restaurants"){%>
+              <img class="tLipRb" style="border:0;left:0px;position:relative;top:20px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
+              <div style="margin-top: 30px;"><%=place.placeName%></div>
+              <div><%=place.ratings%></div>
+              <div><%=place.reviews%></div>
+              <div><%=place.address%></div>
+              <div><a href="<%=place.website%>">Website</a></div>
+              <div><%=place.phone%></div>
+              <div><%=place.description%></div>
+              <div><%=place.info%></div>
+        <%};%>
+      <%});%>
+  </div>
+  <div id="drinks" class="w3-container city" style="position: absolute !important; display:none">
+      <p>
+        We found Bars, Lounge and Pubs . With Reviews of over 120k, here is our top Recommendartion:
+      </p>
+      <% places.forEach(function(place){%>
+        <% if(place.placeType == "bars"){%>
+              <img class="tLipRb" style="border:0;left:0px;position:relative;top:20px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
+              <div style="margin-top: 30px;"><%=place.placeName%></div>
+              <div><%=place.ratings%></div>
+              <div><%=place.address%></div>
+              <div><a href="<%=place.website%>">Website</a></div>
+              <div><%=place.phone%></div>
+              <div><%=place.description%></div>
+              <div><%=place.info%></div>
+        <%};%>
+      <%});%>
+  </div>
+  <div id="music" class="w3-container city" style="position: absolute !important; display:none">
+      <p>
+        We found Clubs. With Reviews of over 120k, here is our top Recommendartion:
+      </p>
+      <% places.forEach(function(place){%>
+        <% if(place.placeType == "nightclub"){%>
+              <img class="tLipRb" style="border:0;left:0px;position:relative;top:20px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
+              <div style="margin-top: 30px;"><%=place.placeName%></div>
+              <div><%=place.ratings%></div>
+              <div><%=place.address%></div>
+              <div><a href="<%=place.website%>">Website</a></div>
+              <div><%=place.phone%></div>
+              <div><%=place.description%></div>
+              <div><%=place.info%></div>
+        <%};%>
+      <%});%>
+  </div>
+  <div id="events" class="w3-container city" style="position: absolute !important; display:none">
+      <p>
+        We found Music Events, Tourist Attraction. With Reviews of over 120k, here is our top Recommendartion:
+      </p>
+      <% places.forEach(function(place){%>
+        <% if(place.placeType == "attractions"){%>
+              <img class="tLipRb" style="border:0;left:0px;position:relative;top:20px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
+              <div style="margin-top: 30px;"><%=place.placeName%></div>
+              <div><%=place.ratings%></div>
+              <div><%=place.address%></div>
+              <div><a href="<%=place.website%>">Website</a></div>
+              <div><%=place.phone%></div>
+              <div><%=place.description%></div>
+              <div><%=place.info%></div>
+        <%};%>
+      <%});%>
+  </div>
+  <div id="hotels" class="w3-container city" style="position: absolute !important; display:none">
+      <p>
+        We found, Hotels and Stays. With Reviews of over 120k, here is our top Recommendartion:
+      </p>
+      <% places.forEach(function(place){%>
+        <% if(place.placeType == "hotels"){%>
+              <img class="tLipRb" style="border:0;left:0px;position:relative;top:20px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
+              <div style="margin-top: 30px;"><%=place.placeName%></div>
+              <div><%=place.ratings%></div>
+              <div><%=place.address%></div>
+              <div><a href="<%=place.website%>">Website</a></div>
+              <div><%=place.phone%></div>
+              <div><%=place.description%></div>
+              <div><%=place.info%></div>
+        <%};%>
+      <%});%>
+  </div>
+</div>
