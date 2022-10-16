@@ -1,0 +1,16 @@
+<div class="w3-display-topmiddle" style="margin-top:164px;background-color: #fffcfc; margin-left: -14px; width: 365px;">
+	<table style="max-width:381px; margin: 12px 5px; background-color: #fffcfc; padding-left: 0px;overflow-wrap: anywhere;font-size: 10px; color: black;">
+        <tr>
+                <td style="border-bottom: 1px solid gray; height:19px">
+                        <%=data[0].tripName %>
+                        <span onclick="document.getElementById('main_modal').style.display='none'" class="w3-button w3-display-topright w3-red">
+                                <i class='fas fa-times' style='font-size:12px'></i>
+                        </span>
+                </td>
+        </tr>
+	</table>
+	<div>
+		<span data-record="<%= data[0].tripGuid %>" class="w3-button w3-red" onclick="deleteTrip(this)">Delete</span>
+	</div>
+	
+</div>

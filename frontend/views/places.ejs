@@ -1,89 +1,114 @@
 <div style="color:white">
-  <div id="food" class="w3-container city" style="position: absolute !important;min-width: 388px;">
+  <div  id="food" class="w3-container mainTabs tabType">
       <p>
         We found American, French, Chinese, Italian, Restuarants. With Reviews of over 120k, here is our top Recommendartion:
       </p>
-      <hr>
-      <% places.forEach(function(place){%>
-        <% if(place.placeType == "restaurants"){%>
-              <img class="tLipRb" style="border:0;left:0px;position:relative;top:20px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
-              <div style="margin-top: 30px;"><%=place.placeName%></div>
-              <div><%=place.ratings%></div>
-              <div><%=place.reviews%></div>
-              <div><%=place.address%></div>
-              <div><a href="<%=place.website%>">Website</a></div>
-              <div><%=place.phone%></div>
-              <div><%=place.description%></div>
-              <div><%=place.info%></div>
-        <%};%>
-      <%});%>
+      <table>
+        <% places.forEach(function(place){%>
+          <% if(place.placeType == "restaurants"){%>
+              <tr>
+                <td><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
+                  <div style="">
+                    <%=place.placeName%></br>
+                    <%=place.reviews%></br>
+                    <%=place.description%></br>
+                    <%=place.info%></br>
+                  </div>
+                </td>
+                <td class="placeTD"><span onclick="addPlace(this)" data-record="<%=place.Id%>" ><i class='fas fa-add' style='font-size:12px'></i></span></td>
+              </tr>
+          <%};%>
+        <%});%>
+      </table>
   </div>
-  <div id="drinks" class="w3-container city" style="position: absolute !important; display:none">
+  <div id="drinks" class="w3-container tabType mainTabs" style="position: absolute !important; display:none">
       <p>
         We found Bars, Lounge and Pubs . With Reviews of over 120k, here is our top Recommendartion:
       </p>
-      <% places.forEach(function(place){%>
-        <% if(place.placeType == "bars"){%>
-              <img class="tLipRb" style="border:0;left:0px;position:relative;top:20px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
-              <div style="margin-top: 30px;"><%=place.placeName%></div>
-              <div><%=place.ratings%></div>
-              <div><%=place.address%></div>
-              <div><a href="<%=place.website%>">Website</a></div>
-              <div><%=place.phone%></div>
-              <div><%=place.description%></div>
-              <div><%=place.info%></div>
-        <%};%>
-      <%});%>
+      <table>
+        <% places.forEach(function(place){%>
+          <% if(place.placeType == "bars"){%>
+                <tr>
+                  <td><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
+                    <div style="">
+                      <%=place.placeName%></br>
+                      <%=place.reviews%></br>
+                      <%=place.description%></br>
+                      <%=place.info%></br>
+                    </div>
+                  </td>
+                  <td><button onclick="addPlace(this)" data-record="<%=place.Id%>" style="margin-bottom: 100px;background-color: #2b2b2b;color: white;border-radius: 8px;"><i class='fas fa-add' style='font-size:12px'></i></button></td>
+                </tr>
+          <%};%>
+        <%});%>
+      </table>
   </div>
-  <div id="music" class="w3-container city" style="position: absolute !important; display:none">
+  <div id="music" class="w3-container tabType mainTabs" style="position: absolute !important; display:none">
       <p>
         We found Clubs. With Reviews of over 120k, here is our top Recommendartion:
       </p>
-      <% places.forEach(function(place){%>
-        <% if(place.placeType == "nightclub"){%>
-              <img class="tLipRb" style="border:0;left:0px;position:relative;top:20px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
-              <div style="margin-top: 30px;"><%=place.placeName%></div>
-              <div><%=place.ratings%></div>
-              <div><%=place.address%></div>
-              <div><a href="<%=place.website%>">Website</a></div>
-              <div><%=place.phone%></div>
-              <div><%=place.description%></div>
-              <div><%=place.info%></div>
-        <%};%>
-      <%});%>
+      <table>
+        <% places.forEach(function(place){%>
+          <% if(place.placeType == "nightclub"){%>
+                <tr>
+                  <td><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
+                    <div style="">
+                      <%=place.placeName%></br>
+                      <%=place.reviews%></br>
+                      <%=place.description%></br>
+                      <%=place.info%></br>
+                    </div>
+                  </td>
+                  <td><button onclick="addPlace(this)" data-record="<%=place.Id%>" style="margin-bottom: 100px;background-color: #2b2b2b;color: white;border-radius: 8px;"><i class='fas fa-add' style='font-size:12px'></i></button></td>
+                </tr>
+          <%};%>
+        <%});%>
+      </table>
   </div>
-  <div id="events" class="w3-container city" style="position: absolute !important; display:none">
+  <div id="events" class="w3-container tabType mainTabs" style="position: absolute !important; display:none">
       <p>
         We found Music Events, Tourist Attraction. With Reviews of over 120k, here is our top Recommendartion:
       </p>
-      <% places.forEach(function(place){%>
-        <% if(place.placeType == "attractions"){%>
-              <img class="tLipRb" style="border:0;left:0px;position:relative;top:20px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
-              <div style="margin-top: 30px;"><%=place.placeName%></div>
-              <div><%=place.ratings%></div>
-              <div><%=place.address%></div>
-              <div><a href="<%=place.website%>">Website</a></div>
-              <div><%=place.phone%></div>
-              <div><%=place.description%></div>
-              <div><%=place.info%></div>
-        <%};%>
-      <%});%>
+      <table>
+        <% places.forEach(function(place){%>
+          <% if(place.placeType == "attractions"){%>
+                <tr>
+                  <td><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
+                    <div style="">
+                      <%=place.placeName%></br>
+                      <%=place.reviews%></br>
+                      <%=place.description%></br>
+                      <%=place.info%></br>
+                    </div>
+                  </td>
+                  <td><button onclick="addPlace(this)" data-record="<%=place.Id%>" style="margin-bottom: 100px;background-color: #2b2b2b;color: white;border-radius: 8px;"><i class='fas fa-add' style='font-size:12px'></i></button></td>
+                </tr>
+          <%};%>
+        <%});%>
+      </table>
   </div>
-  <div id="hotels" class="w3-container city" style="position: absolute !important; display:none">
+  <div id="hotels" class="w3-container tabType mainTabs" style="position: absolute !important; display:none">
       <p>
         We found, Hotels and Stays. With Reviews of over 120k, here is our top Recommendartion:
       </p>
-      <% places.forEach(function(place){%>
-        <% if(place.placeType == "hotels"){%>
-              <img class="tLipRb" style="border:0;left:0px;position:relative;top:20px;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
-              <div style="margin-top: 30px;"><%=place.placeName%></div>
-              <div><%=place.ratings%></div>
-              <div><%=place.address%></div>
-              <div><a href="<%=place.website%>">Website</a></div>
-              <div><%=place.phone%></div>
-              <div><%=place.description%></div>
-              <div><%=place.info%></div>
-        <%};%>
-      <%});%>
+      <table>
+        <% places.forEach(function(place){%>
+          <% if(place.placeType == "hotels"){%>
+                <tr>
+                  <td><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="90"  src="<%=place.thumbnails%>" width="90">
+                    <div style="">
+                      <%=place.placeName%></br>
+                      <%=place.reviews%></br>
+                      <%=place.description%></br>
+                      <%=place.info%></br>
+                    </div>
+                  </td>
+                  <td><button onclick="addPlace(this)" data-record="<%=place.Id%>" style="margin-bottom: 100px;background-color: #2b2b2b;color: white;border-radius: 8px;"><i class='fas fa-add' style='font-size:12px'></i></button></td>
+                </tr>
+          <%};%>
+        <%});%>
+      </table>
   </div>
+  
+
 </div>

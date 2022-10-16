@@ -1,0 +1,268 @@
+<div class="w3-display-topmiddle displayPlaceInfo">
+        <table style="margin: 12px 0px; background-color: #fffcfc; min-width: 364px; text-align:center;overflow-wrap: anywhere;font-size: 10px; color:black;">
+                <tr>
+                        <td style="border-bottom: 1px solid gray; height:38px">
+                                <%=data[0][0].placeName %>
+                                <span style="margin:12px -12px;" onclick="document.getElementById('main_modal').style.display='none'" class="w3-button w3-display-topright w3-red">
+                                        <i class='fas fa-times' style='font-size:12px'></i>
+                                </span>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                <img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="120px"  src="<%=data[0][0].thumbnails%>" width="120px">
+                                <%=data[0][0].address %> </br>
+                                <%=data[0][0].phone %></br> 
+                                <%=data[0][0].website %></br>
+                                <%=data[0][0].description %></br>
+                                <%=data[0][0].ratings %></br>
+                        </td>
+                </tr>
+                <tr>
+                        <td style="display:grid;">
+                                <select onchange="displayTrip()" id="selectTrip">
+                                        <option value="">Add to trip</option>
+                                        <option value="New">New</option>
+                                        <% data[1].forEach(function(trip) {%>
+                                                <option value="<%=trip.tripGuid %>"><%=trip.tripName %></option>
+                                        <%});%>
+                                </select>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                <div>   Reservation Time
+                                        <select id="reserveStartTime">
+                                                <option value="">Hour</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                        </select>
+                                        <select id="start_am_pm">
+                                                <option>AM</option>
+                                                <option>PM</option>
+                                        </select>
+                                </div>
+                                <div>   Reservation Time
+                                        <select id="reserveEndTime">
+                                                <option value="">Hour</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                        </select>
+                                        <select id="end_am_pm">
+                                                <option>AM</option>
+                                                <option>PM</option>
+                                        </select>
+                                </div>
+                                <div>   Reservation Date
+                                        <select id="reserveDay">
+                                                <option value="">Day</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                        </select>
+                                        <select id="reserveMonth">
+                                                <option value="">Month</option>
+                                                <option value="1">Jan</option>
+                                                <option value="2">Feb</option>
+                                                <option value="3">Mar</option>
+                                                <option value="4">Apr</option>
+                                                <option value="5">May</option>
+                                                <option value="6">Jun</option>
+                                                <option value="7">Jul</option>
+                                                <option value="8">Aug</option>
+                                                <option value="9">Sept</option>
+                                                <option value="10">Oct</option>
+                                                <option value="11">Nov</option>
+                                                <option value="12">Dec</option>
+                                        </select>
+                                        <select id="reserveYear">
+                                                <option value="">Year</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2034">2024</option>
+                                        </select>
+                                </div>
+                        </td>
+                </tr>
+                <tr>
+                        <td style="display:grid;">
+                                <textarea id="comment"  placeholder="Enter Comment"></textarea>
+                        </td>
+                </tr>
+                <tr>
+                        <td style="display:None;" id="displayAction">
+                                <input type="value" id="tripName" placeholder="Trip Name Required">
+                                <div>
+                                
+                                </div>
+                                
+                                <div>   Trip Start Date
+                                        <select id="startDay">
+                                                <option value="">Day</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                        </select>
+                                        <select id="startMonth">
+                                                <option value="">Month</option>
+                                                <option value="1">Jan</option>
+                                                <option value="2">Feb</option>
+                                                <option value="3">Mar</option>
+                                                <option value="4">Apr</option>
+                                                <option value="5">May</option>
+                                                <option value="6">Jun</option>
+                                                <option value="7">Jul</option>
+                                                <option value="8">Aug</option>
+                                                <option value="9">Sept</option>
+                                                <option value="10">Oct</option>
+                                                <option value="11">Nov</option>
+                                                <option value="12">Dec</option>
+                                        </select>
+                                        <select id="startYear">
+                                                <option value="">Year</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2034">2024</option>
+                                        </select>
+                                </div>
+                                <div>   Trip End Date
+                                        <select id="endDay">
+                                                <option value="">Day</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                        </select>
+                                        <select id="endMonth">
+                                                <option value="">Month</option>
+                                                <option value="1">Jan</option>
+                                                <option value="2">Feb</option>
+                                                <option value="3">Mar</option>
+                                                <option value="4">Apr</option>
+                                                <option value="5">May</option>
+                                                <option value="6">Jun</option>
+                                                <option value="7">Jul</option>
+                                                <option value="8">Aug</option>
+                                                <option value="9">Sept</option>
+                                                <option value="10">Oct</option>
+                                                <option value="11">Nov</option>
+                                                <option value="12">Dec</option>
+                                        </select>
+                                        <select id="endYear">
+                                                <option value="">Year</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2034">2024</option>
+                                        </select>
+                                </div>
+                                <input data-record="<%=data[0][0].Id%>" type="submit" value="Create" onclick="createItinerary(this)">
+                        </td>
+                </tr>
+                <tr>
+                        <td id="addTrip" style="display:None;">
+                                <input data-record="<%=data[0][0].Id%>" type="submit" value="Add" onclick="addTripToItinerary(this)">
+                        </td>
+                </tr>
+
+        </table>
+</div>

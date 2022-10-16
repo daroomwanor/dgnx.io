@@ -1,0 +1,148 @@
+<div class="w3-display-topmiddle" style="margin-top:164px;background-color: #fffcfc; margin-left: -14px; width: 365px;">
+        <table style="max-width:381px; margin: 12px 5px; background-color: #fffcfc; padding-left: 0px;overflow-wrap: anywhere;font-size: 10px; color: black;">
+                <tr>
+                        <td style="border-bottom: 1px solid gray; height:19px">
+                                <%=data[0].placeName %>
+                                <span onclick="document.getElementById('main_modal').style.display='none'" class="w3-button w3-display-topright w3-red">
+                                        <i class='fas fa-times' style='font-size:12px'></i>
+                                </span>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                <img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="120px"  src="<%=data[0].thumbnails%>" width="120px">
+                                <%=data[0].address %> </br>
+                                <%=data[0].phone %></br> 
+                                <%=data[0].website %></br>
+                                <%=data[0].description %></br>
+                                <%=data[0].ratings %></br>
+                        </td>
+                </tr>
+
+
+        </table>
+        <table style="margin: 12px 0px; background-color: #fffcfc; min-width: 364px; text-align:center;overflow-wrap: anywhere;font-size: 10px; color:black;">
+        	    <tr>
+                		<td> Time</td><td> Date</td>
+                </tr>
+                <tr>
+                		<td> <%=data[0].reserveStartTime %> to <%=data[0].reserveEndTime %> </td>
+                		<td> <%=data[0].reserveMonth %>/<%=data[0].reserveDay %>/<%=data[0].reserveYear %></td>
+                </tr>
+                <tr>
+                	<td>
+                        <div>   Start
+                                <select id="reserveStartTime">
+                                        <option value="<%=data[0].reserveStartTime %>"><%=data[0].reserveStartTime %></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                </select>
+                                <select id="start_am_pm">
+                                		<option value="<%=data[0].start_am_pm %>"><%=data[0].start_am_pm %></option>
+                                        <option value="AM">AM</option>
+                                        <option value="PM">PM</option>
+                                </select>
+                        </div>
+                        <div>   End
+                                <select id="reserveEndTime">
+                                        <option value="<%=data[0].reserveEndTime %>"><%=data[0].reserveEndTime %></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                </select>
+                                <select id="end_am_pm">
+                                		<option value="<%=data[0].end_am_pm %>"><%=data[0].end_am_pm %></option>
+                                        <option value="AM">AM</option>
+                                        <option value="PM">PM</option>
+                                </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div>	<select id="reserveMonth">
+                                        <option value="<%=data[0].reserveMonth %>"><%=data[0].reserveMonth %></option>
+                                        <option value="1">Jan</option>
+                                        <option value="2">Feb</option>
+                                        <option value="3">Mar</option>
+                                        <option value="4">Apr</option>
+                                        <option value="5">May</option>
+                                        <option value="6">Jun</option>
+                                        <option value="7">Jul</option>
+                                        <option value="8">Aug</option>
+                                        <option value="9">Sept</option>
+                                        <option value="10">Oct</option>
+                                        <option value="11">Nov</option>
+                                        <option value="12">Dec</option>
+                                </select>
+                                <select id="reserveDay">
+                                        <option value="<%=data[0].reserveDay %>"><%=data[0].reserveDay %></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+                                </select>
+                                <select id="reserveYear">
+                                        <option value="<%=data[0].reserveYear %>"><%=data[0].reserveYear %></option>
+                                        <option value="2023">2023</option>
+                                        <option value="2034">2024</option>
+                                </select>
+                        </div>
+                	</td>
+                </tr>
+                
+        </table>
+        <div style="text-align:center;overflow-wrap: anywhere;font-size: 10px;">
+        	<textarea style="width: 341px;height: 40px; margin-left: 10px" id="comment"><%=data[0].placeInfo %></textarea>
+        </div>
+        <div style="text-align:center;overflow-wrap: anywhere;font-size: 10px;">
+        	<input type="hidden" value="<%=data[0].placeId %>" id="placeId">
+        	<input type="hidden" value="<%=data[0].tripGuid %>" id="tripGuid">
+        	<span><button data-record="<%=data[0].itemGuid%>" onclick="editTripItinerary(this)" class="w3-button w3-blue">Update Itinerary</button></span>
+        	<span><button data-record="<%=data[0].itemGuid%>" onclick="deleteItineraryItem(this)" class="w3-button w3-red">Remove</button></span>
+        </div>
+</div>

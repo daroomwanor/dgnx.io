@@ -3,27 +3,39 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 /* Set the width of the sidebar to 120px */
 .w3-sidebar {width: 120px;background: #222;}
 /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
-#main {margin-left: 0px}
+#main1 {margin-left: 0px}
 /* Remove margins from "page content" on small screens */
-@media only screen and (max-width: 600px) {#main {margin-left: -20px}}
+@media only screen and (max-width: 600px) {#main1 {margin-left: 0px}}
 
-.td{
-  background-color: #222;
-  color: white;
-  font-style: oblique;
-  font-size: smaller;
-  font-family: -webkit-body;
-  padding-left: 0px;
-  border-bottom: "solid 1px #605858";
-  min-width:300px;
+.placeTD{
+  background-color: white;
+  color: black;
 }
 
+.mainTabs{
+  position: absolute;
+  background-color: #fffcfc;
+  color: black;
+  margin-top: 20px;
+  font-size: 12px;
+  position: absolute !important;
+  max-width: 388px;
+}
 
+.displayPlaceInfo {
+  background-color: #fffcfc;
+  color: black;
+  margin-top:164px;
+}
+
+select {
+  text-align: center;
+}
 body
       {
         margin:0;
         padding:0;
-        background:#262626;
+        background:#000000;
       }
       .ring
       {
@@ -107,3 +119,98 @@ body
           transform:rotate(405deg);
         }
       }
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+.slider {
+  width: 385px;
+  text-align: center;
+  overflow: hidden;
+  margin-top: 165px;
+  color: #565555;
+
+}
+
+.slides {
+  margin-left: 26px;
+  display: flex;
+  
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  
+  
+  
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  
+  /*
+  scroll-snap-points-x: repeat(300px);
+  scroll-snap-type: mandatory;
+  */
+}
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slides > div {
+  scroll-snap-align: start;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  flex-shrink: 0;
+  width: 323px;
+  height: 500px;
+  border-radius: 10px;
+  background: #eee;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+  margin-right: 18px;
+  display: flex;
+  /*justify-content: center*/;
+  /*align-items: center*/;
+  font-size: 14px;
+}
+.slides > div:target {
+/*   transform: scale(0.8); */
+}
+
+.slider > a {
+  display: inline-flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: white;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 0 0.5rem 0;
+  position: relative;
+  font-size: 10px;
+}
+.slider > a:active {
+  top: 1px;
+}
+.slider > a:focus {
+  background: #000;
+}
+
+
+
+
+
+
+

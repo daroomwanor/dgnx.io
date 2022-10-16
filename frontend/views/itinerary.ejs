@@ -1,0 +1,625 @@
+
+<div class="slider">
+  <a href="#slide-1">Sun</a>
+  <a href="#slide-2">Mon</a>
+  <a href="#slide-3">Tue</a>
+  <a href="#slide-4">Wed</a>
+  <a href="#slide-5">Thur</a>
+  <a href="#slide-6">Fri</a>
+  <a href="#slide-7">Sat</a>
+
+  <div class="slides">
+    <div id="slide-1">
+    	<div style="min-width:322px;max-width:322px;">
+    		<div>
+	    		<span style="float:left; margin-left:116px; font-size: 20px;color: #4e4e4e;">
+		    		<i class="fa-solid fa-calendar-days"></i> Sunday
+		    	</span>
+		    	<span style="float:right;margin: 5px 10px 0px 0px;">
+		    		<i class="fa-solid fa-gear"></i>
+		    	</span>
+	    	</div>
+	    	<div style="margin-left: 15px; overflow-x: auto;scroll-snap-type: x mandatory;font-size: xx-small;margin-top: 5px; color:black; padding-left: 0px; width:300px;">
+	          <div class="w3-button w3-gray" id="foodTab" style="width: 50px; padding-left:0px;"  onclick="openCity(event,'food')"><i class='fas fa-pizza-slice' style='font-size:12px'></i><br>Chow</div>
+	          <div class="w3-button w3-gray" style="width: 50px; padding-left:10px;"  onclick="openCity(event,'drinks')"><i class='fas fa-glass-cheers' style='font-size:12px'></i> <br>Drinks</div>
+	          <div class="w3-button w3-gray" style="width: 50px; padding-left:6px;"  onclick="openCity(event,'music')"><i class='fas fa-music' style='font-size:12px'></i><br> Nightlife</div>
+	          <div class="w3-button w3-gray" style="width: 50px; padding-left:6px;"  onclick="openCity(event,'events')"><i class='fas fa-globe-africa' style='font-size:12px'></i><br> Events</div>
+	          <div class="w3-button w3-gray" style="width: 50px; padding-left:6px;"  onclick="openCity(event,'events')"><i class='fas fa-globe-africa' style='font-size:12px'></i><br>Services</div>
+	        </div>
+	        <div style="overflow-y: auto;scroll-snap-type: y mandatory; height:282px; font-size:10px; border: 1px solid gray; margin-left: 10px; margin-top:1px;width:300px">
+	        	<div style="margin-top: 2px;">
+	        		<input style="text-align:center;" type="text" name="" placeholder="search"><br>
+	        		<span style="margin-left:41px;">Our Recommendations</span>
+	        		<span style="float:right; margin: -6px 16px;"><i class="fa-solid fa-sliders"></i></span>
+
+	        	</div>
+	        	<table>
+			        <% new_data.forEach(function(place){%>
+			          <% if(place.placeType == "restaurants"){%>
+			              <tr onclick="addPlace(this)" data-record="<%=place.Id%>">
+			                <td style="border:1px solid gray;"><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="65"  src="<%=place.thumbnails%>" width="70">
+			                    <%=place.placeName%></br>
+			                    <%=place.reviews%></br>
+			                    <%=place.description%></br>
+			                </td>
+			                <td><span onclick="addPlace(this)" data-record="<%=place.Id%>" ><i class='fas fa-add' style='font-size:12px'></i></span></td>
+			              </tr>
+			          <%};%>
+			        <%});%>
+			    </table>
+	        </div>
+
+	        <div class="w3-bar w3-black" style="font-size: xx-small;margin-top: 20px;" id="tabBar">
+	        	<div style="background-color: white; color: black;">Planner</div>
+	        	<table style="width: 323px; background-color:white;">
+	        		<tr style="background-color:violet;">
+	        			<th><i class="fa-regular fa-clock" style='font-size:12px'></i></th><th>Morining <br> 6AM - 12PM</th> <th> Afternoon <br> 12PM - 6PM</th> <th> Evening <br> 6PM - 2AM</th>
+	        		</tr>
+	        		<tr>
+	        			<td style="width:35px; background-color: cornflowerblue;"><i class='fas fa-pizza-slice' style='font-size:12px'></i></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[0].thumbnails%>" width="70"></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[1].thumbnails%>" width="70"></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[2].thumbnails%>" width="70"></td>
+	        		</tr>
+	        		<tr>
+	        			<td style="width:35px; background-color: cornflowerblue;"><i class='fas fa-glass-cheers' style='font-size:12px'></i></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[3].thumbnails%>" width="70"></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[4].thumbnails%>" width="70"></td>
+	        			<td></td>
+	        		</tr>
+	        		<tr>
+	        			<td style="width:35px; background-color: cornflowerblue;"><i class='fas fa-music' style='font-size:12px'></i></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[6].thumbnails%>" width="70"></td>
+	        			<td></td>
+	        			<td></td>
+	        		</tr>
+	        		<tr>
+	        			<td style="width:35px; background-color: cornflowerblue;"><i class='fas fa-globe-africa' style='font-size:12px'></i></td>
+	        			<td></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[7].thumbnails%>" width="70"></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[8].thumbnails%>" width="70"></td>
+	        		</tr>
+	        	</table>
+	        </div>
+
+    	</div>
+    </div>
+    <div id="slide-2">
+     <div style="min-width:322px;max-width:322px;">
+		<span style="float: right;color: cornflowerblue;"><i class="fa-solid fa-cloud"></i> 77 </span>
+		<span style="float:left; margin-left: 12px; font-size: 30px;color: cornflowerblue;">
+    		<i class="fa-solid fa-calendar-days"></i> Monday
+    	</span>
+    	<div class="w3-bar w3-black" style="font-size: xx-small;margin-top: 5px;" id="tabBar">
+          <button id="foodTab" style="width: 70px" class="w3-bar-item w3-button tablink w3-gray" onclick="openCity(event,'food')"><i class='fas fa-pizza-slice' style='font-size:12px'></i><br> Food</button>
+          <button style="width: 70px" class="w3-bar-item w3-button tablink" onclick="openCity(event,'drinks')"><i class='fas fa-glass-cheers' style='font-size:12px'></i> Drinks</button>
+          <button style="width: 70px" class="w3-bar-item w3-button tablink" onclick="openCity(event,'music')"><i class='fas fa-music' style='font-size:12px'></i> Music</button>
+          <button style="width: 70px" class="w3-bar-item w3-button tablink" onclick="openCity(event,'events')"><i class='fas fa-globe-africa' style='font-size:12px'></i> Events</button>
+        </div>
+    	<div class="w3-bar w3-black" style="font-size: xx-small;margin-top: 220px;" id="tabBar">
+	        <div style="background-color: white; color: black;">Planner</div>
+	        	<table style="width: 302px; background-color:white;">
+	        		<tr style="background-color:violet;">
+	        			<th><i class="fa-regular fa-clock" style='font-size:12px'></i></th><th>Morining <br> 6AM - 12PM</th> <th> Afternoon <br> 12PM - 6PM</th> <th> Evening <br> 6PM - 2AM</th>
+	        		</tr>
+	        		<tr>
+	        			<td style="width:35px; background-color: cornflowerblue;"><i class='fas fa-pizza-slice' style='font-size:12px'></i></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[0].thumbnails%>" width="70"></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[1].thumbnails%>" width="70"></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[2].thumbnails%>" width="70"></td>
+	        		</tr>
+	        		<tr>
+	        			<td style="width:35px; background-color: cornflowerblue;"><i class='fas fa-glass-cheers' style='font-size:12px'></i></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[3].thumbnails%>" width="70"></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[4].thumbnails%>" width="70"></td>
+	        			<td></td>
+	        		</tr>
+	        		<tr>
+	        			<td style="width:35px; background-color: cornflowerblue;"><i class='fas fa-music' style='font-size:12px'></i></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[6].thumbnails%>" width="70"></td>
+	        			<td></td>
+	        			<td></td>
+	        		</tr>
+	        		<tr>
+	        			<td style="width:35px; background-color: cornflowerblue;"><i class='fas fa-globe-africa' style='font-size:12px'></i></td>
+	        			<td></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[7].thumbnails%>" width="70"></td>
+	        			<td><img class="tLipRb" style="border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=new_data[8].thumbnails%>" width="70"></td>
+	        		</tr>
+	        	</table>
+	        </div>
+	</div>
+    </div>
+    <div id="slide-3">
+	    <div style="min-width:300px;max-width:300px;">
+				<span style="float: right;color: cornflowerblue;"><i class="fa-solid fa-cloud"></i> 77 </span>
+				<span style="float:left; margin-left: 12px; font-size: 30px;color: cornflowerblue;">
+		    		<i class="fa-solid fa-calendar-days"></i> Tuesday
+		    	</span>
+		  </div>
+    </div>
+    <div id="slide-4">
+    	<div style="min-width:300px;max-width:300px;">
+		<span style="float: right;color: cornflowerblue;"><i class="fa-solid fa-cloud"></i> 77 </span>
+		<span style="float:left; margin-left: 12px; font-size: 30px;color: cornflowerblue;">
+    		<i class="fa-solid fa-calendar-days"></i> Wednesday
+    	</span>
+	</div>
+    </div>
+    <div id="slide-5">
+    	<div style="min-width:300px;max-width:300px;">
+			<span style="float: right;color: cornflowerblue;"><i class="fa-solid fa-cloud"></i> 77 </span>
+			<span style="float:left; margin-left: 12px; font-size: 30px;color: cornflowerblue;">
+	    		<i class="fa-solid fa-calendar-days"></i> Thursday
+	    	</span>
+		</div>
+    </div>
+    <div id="slide-6">
+	     <div style="min-width:300px;max-width:300px;">
+			<span style="float: right;color: cornflowerblue;"><i class="fa-solid fa-cloud"></i> 77 </span>
+			<span style="float:left; margin-left: 12px; font-size: 30px;color: cornflowerblue;">
+	    		<i class="fa-solid fa-calendar-days"></i> Friday
+	    	</span>
+		</div>
+    </div>
+    <div id="slide-7">
+     <div style="min-width:300px;max-width:300px;">
+			<span style="float: right;color: cornflowerblue;"><i class="fa-solid fa-cloud"></i> 77 </span>
+			<span style="float:left; margin-left: 12px; font-size: 30px;color: cornflowerblue;">
+	    		<i class="fa-solid fa-calendar-days"></i> Saturday
+	    	</span>
+		</div>
+    </div>
+  </div>
+</div>
+
+<!--<div style="color:black; margin-top: 0px; background-color:#fffcfc;" >
+	<table id="tripTableEdit" style="display:none; margin-left: 70px;">
+			<tr>
+				<td><input type="text" id="tripName" value="<%= data[0].tripName %>"></td>
+			</tr>
+			<tr>
+				<td>
+					<select id="startMonth">
+                        <option value="">Month</option>
+                        <option value="1">Jan</option>
+                        <option value="2">Feb</option>
+                        <option value="3">Mar</option>
+                        <option value="4">Apr</option>
+                        <option value="5">May</option>
+                        <option value="6">Jun</option>
+                        <option value="7">Jul</option>
+                        <option value="8">Aug</option>
+                        <option value="9">Sept</option>
+                        <option value="10">Oct</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dec</option>
+                </select>
+					<select id="startDay">
+                        <option value="">Day</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                </select>
+       
+                <select id="startYear">
+                        <option value="">Year</option>
+                        <option value="2023">2023</option>
+                        <option value="2034">2024</option>
+                </select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<select id="endMonth">
+                        <option value="">Month</option>
+                        <option value="1">Jan</option>
+                        <option value="2">Feb</option>
+                        <option value="3">Mar</option>
+                        <option value="4">Apr</option>
+                        <option value="5">May</option>
+                        <option value="6">Jun</option>
+                        <option value="7">Jul</option>
+                        <option value="8">Aug</option>
+                        <option value="9">Sept</option>
+                        <option value="10">Oct</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dec</option>
+                	</select>
+					<select id="endDay">
+                        <option value="">Day</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                </select>
+                
+                <select id="endYear">
+                        <option value="">Year</option>
+                        <option value="2023">2023</option>
+                        <option value="2034">2024</option>
+                </select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button data-record="<%= data[0].tripGuid %>" onclick="updateTripAction(this)" class="w3-button w3-blue">Save</button>
+					<button class="w3-button w3-red" onclick="closeTripEdit()">Cancel</button>
+				</td>
+			</tr>
+		</table>
+	<div id="food" class="w3-container tabType" style="position: absolute !important; background-color:#fffcfc; color: #575757;font-size: 11px; font-weight: bolder;">
+		<table id="tripTableDisplay" style="display:block; width: 100%;border-bottom: solid 1px lightgray;">
+			<tr>
+				<td style="text-align: center;width: 265px;"><i class="fa-solid fa-suitcase"></i> <%= data[0].tripName %><br><%= data[0].startMonth %>/<%= data[0].startDay %>/<%= data[0].startYear %> to <%= data[0].endMonth %>/<%= data[0].endDay %>/<%= data[0].endYear %></td>
+				<td>
+					<span style="font-size: 10px;" id="editTripButton" onclick="editTripAction(this)" data-record="<%= data[0].tripGuid %>" class="w3-button">
+						<i class="fa-solid fa-pen-to-square"></i></i> Edit
+					</span>
+				</td>
+				<td>
+					<span style="font-size: 10px;" id="editTripButton" onclick="editTripAction(this)" data-record="<%= data[0].tripGuid %>" class="w3-button">
+						<i style="font-size:12px;" class="fa-solid fa-envelope"></i> Share
+					</span>
+				</td>
+				<td>
+					<span data-record="<%= data[0].tripGuid %>" style="font-size: 10px;" class=" w3-button" onclick="deleteTripAction(this)">
+						<i style="font-size:12px" class="fa-regular fa-calendar-xmark"></i> Delete
+					</span>
+				</td>
+			</tr>
+		</table>
+
+		
+		
+	  <table style="width:100%;">
+	    <% data.forEach(function(place){%>
+	      <% if(place.placeType == "restaurants"){%>
+	          <tr onclick="displayTripItemAction(this)" data-record="<%=place.itemGuid%>">
+	            <td style="border-bottom: 1px solid lightgray; background-color: cornflowerblue;color: white;"><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=place.thumbnails%>" width="70">
+	              <div style="">
+	                <span style="font: -webkit-control;"><%=place.placeName%></br></span>
+	              	<i class="fa-regular fa-clock"></i>   <%=place.reserveStartTime%> <%=place.start_am_pm %> - <%=place.reserveEndTime%> <%=place.end_am_pm%></br>
+	              	<i class="fa-regular fa-calendar-days"></i>   <%=place.reserveMonth%>/<%=place.reserveDay%>/<%=place.reserveYear%></br>
+	              	<span>
+	              		<%=place.placeInfo%>
+	              	</span>
+	              </div>
+	              
+	            
+	            	<div style="float: right; margin-top: -20px;" onclick="displayTripItemAction(this)" data-record="<%=place.itemGuid%>"><i class="fa-solid fa-pen"></i></div>
+	            </td>
+	          </tr>
+
+	      <%};%>
+	    <%});%>
+	  </table>
+	  <h6>Our Sugestions</h6>
+	  <table>
+        <% new_data.forEach(function(place){%>
+          <% if(place.placeType == "restaurants"){%>
+              <tr onclick="addPlace(this)" data-record="<%=place.Id%>">
+                <td><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="70"  src="<%=place.thumbnails%>" width="70">
+                  <div style="">
+                    <%=place.placeName%></br>
+                    <%=place.reviews%></br>
+                    <%=place.description%></br>
+                    <%=place.info%></br>
+                  </div>
+                </td>
+                <td class="placeTD"><span onclick="addPlace(this)" data-record="<%=place.Id%>" ><i class='fas fa-add' style='font-size:12px'></i></span></td>
+              </tr>
+          <%};%>
+        <%});%>
+      </table>
+	</div>
+
+	<div id="drinks" class="w3-container tabType" style="position: absolute !important; background-color:#fffcfc; color: #575757;font-size: 11px; font-weight: bolder; display: none;">
+		<table id="tripTableDisplay" style="display:block; width: 100%;border-bottom: solid 1px lightgray;">
+			<tr>
+				<td style="text-align: center;width: 265px;"><i class="fa-solid fa-suitcase"></i> <%= data[0].tripName %><br><%= data[0].startMonth %>/<%= data[0].startDay %>/<%= data[0].startYear %> to <%= data[0].endMonth %>/<%= data[0].endDay %>/<%= data[0].endYear %></td>
+				<td>
+					<span style="font-size: 10px;" id="editTripButton" onclick="editTripAction(this)" data-record="<%= data[0].tripGuid %>" class="w3-button">
+						<i class="fa-solid fa-pen-to-square"></i></i> Edit
+					</span>
+				</td>
+				<td>
+					<span style="font-size: 10px;" id="editTripButton" onclick="editTripAction(this)" data-record="<%= data[0].tripGuid %>" class="w3-button">
+						<i style="font-size:12px;" class="fa-solid fa-envelope"></i> Share
+					</span>
+				</td>
+				<td>
+					<span data-record="<%= data[0].tripGuid %>" style="font-size: 10px;" class=" w3-button" onclick="deleteTripAction(this)">
+						<i style="font-size:12px" class="fa-regular fa-calendar-xmark"></i> Delete
+					</span>
+				</td>
+			</tr>
+		</table>
+
+		
+		
+	  <table style="width:100%;">
+	    <% data.forEach(function(place){%>
+	      <% if(place.placeType == "bars"){%>
+	          <tr onclick="displayTripItemAction(this)" data-record="<%=place.itemGuid%>">
+	            <td style="border-bottom: 1px solid lightgray; background-color: cornflowerblue;color: white;"><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=place.thumbnails%>" width="70">
+	              <div style="">
+	                <span style="font: -webkit-control;"><%=place.placeName%></br></span>
+	              	<i class="fa-regular fa-clock"></i>   <%=place.reserveStartTime%> <%=place.start_am_pm %> - <%=place.reserveEndTime%> <%=place.end_am_pm%></br>
+	              	<i class="fa-regular fa-calendar-days"></i>   <%=place.reserveMonth%>/<%=place.reserveDay%>/<%=place.reserveYear%></br>
+	              	<span>
+	              		<%=place.placeInfo%>
+	              	</span>
+	              </div>
+	              
+	            
+	            	<div style="float: right; margin-top: -20px;" onclick="displayTripItemAction(this)" data-record="<%=place.itemGuid%>"><i class="fa-solid fa-pen"></i></div>
+	            </td>
+	          </tr>
+
+	      <%};%>
+	    <%});%>
+	  </table>
+	  <h6>Our Sugestions</h6>
+	  <table>
+        <% new_data.forEach(function(place){%>
+          <% if(place.placeType == "bars"){%>
+              <tr onclick="addPlace(this)" data-record="<%=place.Id%>">
+                <td><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="70"  src="<%=place.thumbnails%>" width="70">
+                  <div style="">
+                    <%=place.placeName%></br>
+                    <%=place.reviews%></br>
+                    <%=place.description%></br>
+                    <%=place.info%></br>
+                  </div>
+                </td>
+                <td class="placeTD"><span onclick="addPlace(this)" data-record="<%=place.Id%>" ><i class='fas fa-add' style='font-size:12px'></i></span></td>
+              </tr>
+          <%};%>
+        <%});%>
+      </table>
+	</div>
+
+	<div id="music" class="w3-container tabType" style="position: absolute !important; background-color:#fffcfc; color: #575757;font-size: 11px; font-weight: bolder; display: none;">
+		<table id="tripTableDisplay" style="display:block; width: 100%;border-bottom: solid 1px lightgray;">
+			<tr>
+				<td style="text-align: center;width: 265px;"><i class="fa-solid fa-suitcase"></i> <%= data[0].tripName %><br><%= data[0].startMonth %>/<%= data[0].startDay %>/<%= data[0].startYear %> to <%= data[0].endMonth %>/<%= data[0].endDay %>/<%= data[0].endYear %></td>
+				<td>
+					<span style="font-size: 10px;" id="editTripButton" onclick="editTripAction(this)" data-record="<%= data[0].tripGuid %>" class="w3-button">
+						<i class="fa-solid fa-pen-to-square"></i></i> Edit
+					</span>
+				</td>
+				<td>
+					<span style="font-size: 10px;" id="editTripButton" onclick="editTripAction(this)" data-record="<%= data[0].tripGuid %>" class="w3-button">
+						<i style="font-size:12px;" class="fa-solid fa-envelope"></i> Share
+					</span>
+				</td>
+				<td>
+					<span data-record="<%= data[0].tripGuid %>" style="font-size: 10px;" class=" w3-button" onclick="deleteTripAction(this)">
+						<i style="font-size:12px" class="fa-regular fa-calendar-xmark"></i> Delete
+					</span>
+				</td>
+			</tr>
+		</table>
+
+		
+	  <table style="width:100%;">
+	    <% data.forEach(function(place){%>
+	      <% if(place.placeType == "nightclub"){%>
+	          <tr onclick="displayTripItemAction(this)" data-record="<%=place.itemGuid%>">
+	            <td style="border-bottom: 1px solid lightgray;background-color: cornflowerblue;color: white; "><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=place.thumbnails%>" width="70">
+	              <div style="">
+	                <span style="font: -webkit-control;"><%=place.placeName%></br></span>
+	              	<i class="fa-regular fa-clock"></i>   <%=place.reserveStartTime%> <%=place.start_am_pm %> - <%=place.reserveEndTime%> <%=place.end_am_pm%></br>
+	              	<i class="fa-regular fa-calendar-days"></i>   <%=place.reserveMonth%>/<%=place.reserveDay%>/<%=place.reserveYear%></br>
+	              	<span>
+	              		<%=place.placeInfo%>
+	              	</span>
+	              </div>
+	              
+	            	<div style="float: right; margin-top:-20px;" onclick="displayTripItemAction(this)" data-record="<%=place.itemGuid%>"><i class="fa-solid fa-pen"></i></div>
+	            </td>
+	          </tr>
+
+	      <%};%>
+	    <%});%>
+	  </table>
+	  <h6>Our Sugestions</h6>
+	  <table>
+        <% new_data.forEach(function(place){%>
+          <% if(place.placeType == "nightclub"){%>
+              <tr onclick="addPlace(this)" data-record="<%=place.Id%>">
+                <td><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="70"  src="<%=place.thumbnails%>" width="70">
+                  <div style="">
+                    <%=place.placeName%></br>
+                    <%=place.reviews%></br>
+                    <%=place.description%></br>
+                    <%=place.info%></br>
+                  </div>
+                </td>
+                <td class="placeTD"><span onclick="addPlace(this)" data-record="<%=place.Id%>" ><i class='fas fa-add' style='font-size:12px'></i></span></td>
+              </tr>
+          <%};%>
+        <%});%>
+      </table>
+	</div>
+
+	<div id="events" class="w3-container tabType" style="position: absolute !important; background-color:#fffcfc; color: #575757;font-size: 11px; font-weight: bolder; display: none;">
+		<table id="tripTableDisplay" style="display:block; width: 100%;border-bottom: solid 1px lightgray;">
+			<tr>
+				<td style="text-align: center;width: 265px;"><i class="fa-solid fa-suitcase"></i> <%= data[0].tripName %><br><%= data[0].startMonth %>/<%= data[0].startDay %>/<%= data[0].startYear %> to <%= data[0].endMonth %>/<%= data[0].endDay %>/<%= data[0].endYear %></td>
+				<td>
+					<span style="font-size: 10px;" id="editTripButton" onclick="editTripAction(this)" data-record="<%= data[0].tripGuid %>" class="w3-button">
+						<i class="fa-solid fa-pen-to-square"></i></i> Edit
+					</span>
+				</td>
+				<td>
+					<span style="font-size: 10px;" id="editTripButton" onclick="editTripAction(this)" data-record="<%= data[0].tripGuid %>" class="w3-button">
+						<i style="font-size:12px;" class="fa-solid fa-envelope"></i> Share
+					</span>
+				</td>
+				<td>
+					<span data-record="<%= data[0].tripGuid %>" style="font-size: 10px;" class=" w3-button" onclick="deleteTripAction(this)">
+						<i style="font-size:12px" class="fa-regular fa-calendar-xmark"></i> Delete
+					</span>
+				</td>
+			</tr>
+		</table>
+
+		
+	  <table style="width:100%;">
+	    <% data.forEach(function(place){%>
+	      <% if(place.placeType == "attractions"){%>
+	          <tr onclick="displayTripItemAction(this)" data-record="<%=place.itemGuid%>">
+	            <td style="border-bottom: 1px solid lightgray; background-color: cornflowerblue;color: white;"><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=place.thumbnails%>" width="70">
+	              <div style="">
+	                <span style="font: -webkit-control;"><%=place.placeName%></br></span>
+	              	<i class="fa-regular fa-clock"></i>   <%=place.reserveStartTime%> <%=place.start_am_pm %> - <%=place.reserveEndTime%> <%=place.end_am_pm%></br>
+	              	<i class="fa-regular fa-calendar-days"></i>   <%=place.reserveMonth%>/<%=place.reserveDay%>/<%=place.reserveYear%></br>
+	              	<span>
+	              		<%=place.placeInfo%>
+	              	</span>
+	              </div>
+	              <div style="float: right; margin-top:-20px;" onclick="displayTripItemAction(this)" data-record="<%=place.itemGuid%>"><i class="fa-solid fa-pen"></i></div>
+	            </td>
+	          </tr>
+
+	      <%};%>
+	    <%});%>
+	  </table>
+	  <h6>Our Sugestions</h6>
+	  <table>
+        <% new_data.forEach(function(place){%>
+          <% if(place.placeType == "attractions"){%>
+              <tr onclick="addPlace(this)" data-record="<%=place.Id%>">
+                <td><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="70"  src="<%=place.thumbnails%>" width="70">
+                  <div style="">
+                    <%=place.placeName%></br>
+                    <%=place.reviews%></br>
+                    <%=place.description%></br>
+                    <%=place.info%></br>
+                  </div>
+                </td>
+                <td class="placeTD"><span onclick="addPlace(this)" data-record="<%=place.Id%>" ><i class='fas fa-add' style='font-size:12px'></i></span></td>
+              </tr>
+          <%};%>
+        <%});%>
+      </table>
+	</div>
+
+	<div id="hotels" class="w3-container tabType" style="position: absolute !important; background-color:#fffcfc; color: #575757;font-size: 11px; font-weight: bolder; display: none;">
+		<table id="tripTableDisplay" style="display:block; width: 100%;border-bottom: solid 1px lightgray;">
+			<tr>
+				<td style="text-align: center;width: 265px;"><i class="fa-solid fa-suitcase"></i> <%= data[0].tripName %><br><%= data[0].startMonth %>/<%= data[0].startDay %>/<%= data[0].startYear %> to <%= data[0].endMonth %>/<%= data[0].endDay %>/<%= data[0].endYear %></td>
+				<td>
+					<span style="font-size: 10px;" id="editTripButton" onclick="editTripAction(this)" data-record="<%= data[0].tripGuid %>" class="w3-button">
+						<i class="fa-solid fa-pen-to-square"></i></i> Edit
+					</span>
+				</td>
+				<td>
+					<span style="font-size: 10px;" id="editTripButton" onclick="editTripAction(this)" data-record="<%= data[0].tripGuid %>" class="w3-button">
+						<i style="font-size:12px;" class="fa-solid fa-envelope"></i> Share
+					</span>
+				</td>
+				<td>
+					<span data-record="<%= data[0].tripGuid %>" style="font-size: 10px;" class=" w3-button" onclick="deleteTripAction(this)">
+						<i style="font-size:12px" class="fa-regular fa-calendar-xmark"></i> Delete
+					</span>
+				</td>
+			</tr>
+		</table>
+		
+	  <table style="width:100%;">
+	    <% data.forEach(function(place){%>
+	      <% if(place.placeType == "hotels"){%>
+	          <tr onclick="displayTripItemAction(this)" data-record="<%=place.itemGuid%>">
+	            <td style="border-bottom: 1px solid lightgray; background-color: cornflowerblue;color: white;"><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px;" height="70"  src="<%=place.thumbnails%>" width="70">
+	              <div style="">
+	                <span style="font: -webkit-control;"><%=place.placeName%></br></span>
+	              	<i class="fa-regular fa-clock"></i>   <%=place.reserveStartTime%> <%=place.start_am_pm %> - <%=place.reserveEndTime%> <%=place.end_am_pm%></br>
+	              	<i class="fa-regular fa-calendar-days"></i>   <%=place.reserveMonth%>/<%=place.reserveDay%>/<%=place.reserveYear%></br>
+	              	<span>
+	              		<%=place.placeInfo%>
+	              	</span>
+	              </div>
+	            	<div style="float: right; margin-top: -20px;" onclick="displayTripItemAction(this)" data-record="<%=place.itemGuid%>"><i class="fa-solid fa-pen"></i></div>
+	            </td>
+	          </tr>
+
+	      <%};%>
+	    <%});%>
+	  </table>
+	  <h6>Our Sugestions</h6>
+	  <table>
+        <% new_data.forEach(function(place){%>
+          <% if(place.placeType == "hotels"){%>
+              <tr onclick="addPlace(this)" data-record="<%=place.Id%>">
+                <td><img class="tLipRb" style="float: left;margin-right: 11px;border:0;left:0px;position:relative;border-radius:8px" height="70"  src="<%=place.thumbnails%>" width="70">
+                  <div style="">
+                    <%=place.placeName%></br>
+                    <%=place.reviews%></br>
+                    <%=place.description%></br>
+                    <%=place.info%></br>
+                  </div>
+                </td>
+                <td class="placeTD"><span onclick="addPlace(this)" data-record="<%=place.Id%>" ><i class='fas fa-add' style='font-size:12px'></i></span></td>
+              </tr>
+          <%};%>
+        <%});%>
+      </table>
+	</div>-->

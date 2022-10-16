@@ -11,62 +11,75 @@
 <body>
 
 <div class="w3-container" style="background-color: black; min-width: 380px;">
-  <div class="w3-display-container w3-black" style="height:900px;">
- 
-    <div class="w3-display-topleft w3-padding w3-black">Home</div>
-    <div class="w3-display-topmiddle w3-padding w3-black">
-      <select>
-        <option>  Today  </option>
-      </select>
-    </div>
-    <div class="w3-display-topright w3-padding w3-black">Login</div>
-   
-    <div class="w3-display-middle w3-padding w3-black" style="min-width: 380px; height: 205px; margin-top: -316px;">
-      <div class="w3-display-topmiddle w3-padding">
-        <h6 style="text-align: center;">Travel <span> <br>X <br> DeZign </span></h6>
+  <div class="w3-display-container w3-black" style="height:100%;">
+    <input type="hidden" name="" value="1" id="userId">    
+    <div class="w3-display-middle w3-padding w3-black" style="min-width: 380px; height: 205px; margin-top: 150px;">
+      <div class="w3-display-topmiddle w3-padding w3-black">
         <select id="cities" onchange="getPlaces()">
-          <% cities.forEach(function(city){%>
-            <option><%=city.city%></option>
-          <%});%>
-          
-        </select>
+              <option>Choose a city</option>
+            <% cities.forEach(function(city){%>
+              <option><%=city.city%></option>
+            <%});%>
+            
+          </select>
       </div>
-      <div class="w3-display-middle w3-padding" style="min-width: 388px; margin-top: 60px">
-        <div class="w3-bar w3-black" style="font-size: xx-small;">
-          <button style="width: 70px" class="w3-bar-item w3-button tablink w3-gray" onclick="openCity(event,'food')"><i class='fas fa-pizza-slice' style='font-size:12px'></i><br> Food</button>
+      <div class="w3-display-middle w3-padding">
+        <h6 style="text-align: center; margin-top:-35px;">Travel <span> <br>X <br> DeZign </span></h6>
+
+        <select onchange="displayItinerary()" id="trip">
+        <option>Select Trip</option>
+        <% trips.forEach(function(trip){%>
+          <option value="<%=trip.tripGuid%>"><%=trip.tripName%></option>
+        <%});%>
+      </select>
+        
+      </div>
+      <div class="" style="min-width: 388px; margin-top: 153px">
+        <div class="w3-bar w3-black" style="font-size: xx-small;margin-top: 5px;" id="tabBar">
+          <button id="foodTab" style="width: 70px" class="w3-bar-item w3-button tablink w3-gray" onclick="openCity(event,'food')"><i class='fas fa-pizza-slice' style='font-size:12px'></i><br> Food</button>
           <button style="width: 70px" class="w3-bar-item w3-button tablink" onclick="openCity(event,'drinks')"><i class='fas fa-glass-cheers' style='font-size:12px'></i> Drinks</button>
           <button style="width: 70px" class="w3-bar-item w3-button tablink" onclick="openCity(event,'music')"><i class='fas fa-music' style='font-size:12px'></i> Music</button>
-          <button style="width: 70px" class="w3-bar-item w3-button tablink" onclick="openCity(event,'events')"><i class='fas fa-globe-africa' style='font-size:12px'></i> Events</button>
+          <button style="width: 70px" class="w3-bar-item w3-button tablink" onclick="openCity(event,'events')"><i class='fas fa-globe-africa' style='font-size:12px'></i> Attractions</button>
           <button style="width: 70px" class="w3-bar-item w3-button tablink" onclick="openCity(event,'hotels')"><i class='fas fa-bed' style='font-size:12px'></i> Hotels</button>
         </div>
-        <div id="main" style="margin-top">
+        <div id="main" style="margin-top:-22px;">
           
         </div>
-      </div>
-      </div>
     </div>
 
+      <div class="w3-container">
+        <div id="main_modal" class="w3-modal ">
+          <div class="w3-modal-content w3-display-middle" style="max-width:380px !important; color:black;">
+            <div class="w3-display-middle">
+              <div id="content">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="w3-display-bottomleft w3-padding">Bottom Left</div>
-    <div class="w3-display-bottomright w3-padding">Bottom Right</div>
-    <div class="w3-display-bottommiddle w3-padding">Bottom Middle</div>
+
+
+    </div>
+    <div class="w3-display-topright w3-padding w3-black"></div>
   </div>
-</div>
 <script>
-  function openCity(evt, cityName) {
+  function openCity(evt, tabName) {
     var i, x, tablinks;
-    x = document.getElementsByClassName("city");
+    x = document.getElementsByClassName("tabType");
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";
     }
     tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < x.length; i++) {
+    for (i = 0; i < tablinks.length; i++) {
       tablinks[i].className = tablinks[i].className.replace(" w3-gray", "");
     }
-    document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " w3-gray";
+    document.getElementById(tabName).style.display = "block";
   }
 </script>
+
 
 </body>
 </html>
